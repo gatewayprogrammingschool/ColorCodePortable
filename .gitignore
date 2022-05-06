@@ -35,6 +35,7 @@ _ReSharper.ColorCode/
 *.user
 *.userosscache
 *.sln.docstates
+**/.version
 
 # Build results
 [Dd]ebug/
