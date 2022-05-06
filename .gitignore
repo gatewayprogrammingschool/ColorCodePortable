@@ -28,6 +28,7 @@ ColorCode.AcceptanceTests/obj/
 ColorCode.Facts.xunit.results.xml
 _ReSharper.ColorCode/
 .vs
+.idea/
 
 # User-specific files
 *.suo
