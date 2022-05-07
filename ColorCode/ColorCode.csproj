@@ -5,8 +5,13 @@
     <Platforms>AnyCPU;x64;x86</Platforms>
     <LangVersion>10</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Nullable>disable</Nullable>
+    <IncludeSource>True</IncludeSource>
+    <IncludeSymbols>True</IncludeSymbols>
+    <PackageId>MarkdownServer.ColorCodePortable</PackageId>
+    <PackageLicenseUrl>https://opensource.org/licenses/MS-PL</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/MarkdownServer/ColorCodePortable</PackageProjectUrl>
+    <PackageIconUrl>https://cdn.rawgit.com/MarkdownServer/ColorCodePortable/c7e4e62aeafa6fcb124bc4d883c95b02a3ee1792/ColorCode/Assets/icon.png</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>
