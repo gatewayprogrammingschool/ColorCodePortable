@@ -28,12 +28,14 @@ ColorCode.AcceptanceTests/obj/
 ColorCode.Facts.xunit.results.xml
 _ReSharper.ColorCode/
 .vs
+.idea/
 
 # User-specific files
 *.suo
 *.user
 *.userosscache
 *.sln.docstates
+**/.version
 
 # Build results
 [Dd]ebug/
