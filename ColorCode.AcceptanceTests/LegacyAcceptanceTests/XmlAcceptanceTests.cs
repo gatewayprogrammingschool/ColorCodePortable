@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace ColorCode
+namespace MarkdownServer.ColorCode
 {
     public class XmlAcceptanceTests
     {
@@ -113,11 +113,11 @@ namespace ColorCode
         public void TransformWillStyleAnElementWithANamespaceAndAttributeWithNameSpace()
         {
             string source =
-@"<xs:schema xmlns:xs=""http://www.w3.org/2001/XMLSchema"" targetNamespace=""http://tempuri.org/po.xsd"" 
+@"<xs:schema xmlns:xs=""http://www.w3.org/2001/XMLSchema"" targetNamespace=""http://tempuri.org/po.xsd""
 xmlns=""http://tempuri.org/po.xsd"" elementFormDefault=""qualified"">";
             string expected =
 @"<div style=""color:Black;background-color:White;""><pre>
-<span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">xs</span><span style=""color:Blue;"">:</span><span style=""color:#A31515;"">schema</span> <span style=""color:Red;"">xmlns:xs</span><span style=""color:Blue;"">=</span><span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">http://www.w3.org/2001/XMLSchema</span><span style=""color:Black;"">&quot;</span> <span style=""color:Red;"">targetNamespace</span><span style=""color:Blue;"">=</span><span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">http://tempuri.org/po.xsd</span><span style=""color:Black;"">&quot;</span> 
+<span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">xs</span><span style=""color:Blue;"">:</span><span style=""color:#A31515;"">schema</span> <span style=""color:Red;"">xmlns:xs</span><span style=""color:Blue;"">=</span><span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">http://www.w3.org/2001/XMLSchema</span><span style=""color:Black;"">&quot;</span> <span style=""color:Red;"">targetNamespace</span><span style=""color:Blue;"">=</span><span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">http://tempuri.org/po.xsd</span><span style=""color:Black;"">&quot;</span>
 <span style=""color:Red;"">xmlns</span><span style=""color:Blue;"">=</span><span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">http://tempuri.org/po.xsd</span><span style=""color:Black;"">&quot;</span> <span style=""color:Red;"">elementFormDefault</span><span style=""color:Blue;"">=</span><span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">qualified</span><span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
@@ -169,7 +169,7 @@ xmlns=""http://tempuri.org/po.xsd"" elementFormDefault=""qualified"">";
             string source =
 @"<?xml version=""1.0"" encoding=""iso-8859-1"" standalone=""yes""?>
 <catalog>
-    <![CDATA[An in-depth look at creating 
+    <![CDATA[An in-depth look at creating
         applications with XML, using <, >,]]>
 </catalog>";
 
@@ -177,7 +177,7 @@ xmlns=""http://tempuri.org/po.xsd"" elementFormDefault=""qualified"">";
 @"<div style=""color:Black;background-color:White;""><pre>
 <span style=""color:Blue;"">&lt;?</span><span style=""color:#A31515;"">xml</span> <span style=""color:Red;"">version</span><span style=""color:Blue;"">=</span><span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">1.0</span><span style=""color:Black;"">&quot;</span> <span style=""color:Red;"">encoding</span><span style=""color:Blue;"">=</span><span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">iso-8859-1</span><span style=""color:Black;"">&quot;</span> <span style=""color:Red;"">standalone</span><span style=""color:Blue;"">=</span><span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">yes</span><span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">?&gt;</span>
 <span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">catalog</span><span style=""color:Blue;"">&gt;</span>
-    <span style=""color:Blue;"">&lt;![CDATA[</span><span style=""color:Gray;"">An in-depth look at creating 
+    <span style=""color:Blue;"">&lt;![CDATA[</span><span style=""color:Gray;"">An in-depth look at creating
         applications with XML, using &lt;, &gt;,</span><span style=""color:Blue;"">]]&gt;</span>
 <span style=""color:Blue;"">&lt;/</span><span style=""color:#A31515;"">catalog</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
@@ -241,9 +241,9 @@ xmlns=""http://tempuri.org/po.xsd"" elementFormDefault=""qualified"">";
         public void TransformWillCommentMultipleCommentsCorrectly()
         {
             string source = "<!-- test --><root><elment><!-- comment inside of element --></element></root>";
-            string expected = 
+            string expected =
                 "<div style=\"color:Black;background-color:White;\"><pre>\r\n<span style=\"color:Green;\">&lt;!-- test --&gt;</span><span style=\"color:Blue;\">&lt;</span><span style=\"color:#A31515;\">root</span><span style=\"color:Blue;\">&gt;</span><span style=\"color:Blue;\">&lt;</span><span style=\"color:#A31515;\">elment</span><span style=\"color:Blue;\">&gt;</span><span style=\"color:Green;\">&lt;!-- comment inside of element --&gt;</span><span style=\"color:Blue;\">&lt;/</span><span style=\"color:#A31515;\">element</span><span style=\"color:Blue;\">&gt;</span><span style=\"color:Blue;\">&lt;/</span><span style=\"color:#A31515;\">root</span><span style=\"color:Blue;\">&gt;</span>\r\n</pre></div>";
-            
+
             string actual = new CodeColorizer().Colorize(source, Languages.Xml);
 
             Assert.Equal(expected, actual);

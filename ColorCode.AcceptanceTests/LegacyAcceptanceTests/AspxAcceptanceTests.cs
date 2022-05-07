@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace ColorCode.AspxAcceptanceTests
+namespace MarkdownServer.ColorCode.AspxAcceptanceTests
 {
     public class AspxScenarioTests
     {
@@ -25,7 +25,7 @@ duplicate SkinId's per control type are not allowed in the same theme.
 <AlternatingRowStyle BackColor=""Blue"" />
 </asp:GridView>
 
-2. DefaultStyleSheet skin. The SkinId is not defined. Only one default 
+2. DefaultStyleSheet skin. The SkinId is not defined. Only one default
 control skin per control type is allowed in the same theme.
 
 <asp:Image runat=""server"" ImageUrl=""~/images/image1.jpg"" />
@@ -47,7 +47,7 @@ duplicate SkinId&#39;s per control type are not allowed in the same theme.
 &lt;AlternatingRowStyle BackColor=&quot;Blue&quot; /&gt;
 &lt;/asp:GridView&gt;
 
-2. DefaultStyleSheet skin. The SkinId is not defined. Only one default 
+2. DefaultStyleSheet skin. The SkinId is not defined. Only one default
 control skin per control type is allowed in the same theme.
 
 &lt;asp:Image runat=&quot;server&quot; ImageUrl=&quot;~/images/image1.jpg&quot; /&gt;
@@ -101,11 +101,11 @@ control skin per control type is allowed in the same theme.
             public void WillStyleDoctypeWithLineBreakInDoubleQuotedString()
             {
                 string source =
-@"<!DOCTYPE html PUBLIC ""-//W3C//DTD XHTML 
+@"<!DOCTYPE html PUBLIC ""-//W3C//DTD XHTML
     1.1//EN"" ""http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"">";
                 string expected =
 @"<div style=""color:Black;background-color:White;""><pre>
-<span style=""color:Blue;"">&lt;!</span><span style=""color:#A31515;"">DOCTYPE</span> <span style=""color:Red;"">html</span> <span style=""color:Red;"">PUBLIC</span> <span style=""color:Blue;"">&quot;-//W3C//DTD XHTML 
+<span style=""color:Blue;"">&lt;!</span><span style=""color:#A31515;"">DOCTYPE</span> <span style=""color:Red;"">html</span> <span style=""color:Red;"">PUBLIC</span> <span style=""color:Blue;"">&quot;-//W3C//DTD XHTML
     1.1//EN&quot;</span> <span style=""color:Blue;"">&quot;http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd&quot;</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 

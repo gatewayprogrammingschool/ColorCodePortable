@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using ColorCode.Compilation;
-using ColorCode.Stubs;
+using MarkdownServer.ColorCode.Compilation;
+using MarkdownServer.ColorCode.Stubs;
 using Xunit;
 
-namespace ColorCode.Parsing
+namespace MarkdownServer.ColorCode.Parsing
 {
     public class LanguageParser_Facts
     {
@@ -95,8 +95,8 @@ namespace ColorCode.Parsing
 
                 languageParser.Parse(sourceCode, stubLanguage, (parsedSourceCode, scopes) =>
                 {
-                    parseHandlerInvocations++; 
-                    parsedSourceCodeStack.Push(parsedSourceCode); 
+                    parseHandlerInvocations++;
+                    parsedSourceCodeStack.Push(parsedSourceCode);
                     scopesStack.Push(scopes);
                 });
 
@@ -278,7 +278,7 @@ namespace ColorCode.Parsing
                 stubCompiledLanguages.Enqueue(new CompiledLanguage("nestedLanguageId", "fnord", new Regex(".*"), new List<string> { "style for a nested language" }));
                 stubLanguageCompiler.Compile__do = (language) => stubCompiledLanguages.Dequeue();
                 StubLanguageRepository stubLanguageRepository = new StubLanguageRepository();
-                stubLanguageRepository.FindById__do = (languageId) => new StubLanguage{ id__getValue = "nestedLanguageId", name__getValue = "fnord", rules__getValue = new List<LanguageRule>{ new LanguageRule("fnord", new Dictionary<int, string>{ {0, "fnord"}})}}; 
+                stubLanguageRepository.FindById__do = (languageId) => new StubLanguage{ id__getValue = "nestedLanguageId", name__getValue = "fnord", rules__getValue = new List<LanguageRule>{ new LanguageRule("fnord", new Dictionary<int, string>{ {0, "fnord"}})}};
                 LanguageParser languageParser = new LanguageParser(stubLanguageCompiler, stubLanguageRepository);
                 StubLanguage stubLanguage = new StubLanguage();
                 const string sourceCode = "source code with {a nested language} in the curly braces";

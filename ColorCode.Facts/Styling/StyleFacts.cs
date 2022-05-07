@@ -1,7 +1,7 @@
 ﻿using System;
 using Xunit;
 
-namespace ColorCode.Styling
+namespace MarkdownServer.ColorCode.Styling
 {
     public class Style_Class_Facts
     {

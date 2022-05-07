@@ -1,7 +1,7 @@
 ﻿using System;
 using Xunit;
 
-namespace ColorCode.CSharpAcceptanceTests
+namespace MarkdownServer.ColorCode.CSharpAcceptanceTests
 {
     public class CSharpScenarioTests
     {
@@ -25,7 +25,7 @@ namespace ColorCode.CSharpAcceptanceTests
             {
                 string source =
     @"/// <exception cref=""CompositionException"">
-/// An error occurred during composition. <see cref=""CompositionException.Issues""/> will 
+/// An error occurred during composition. <see cref=""CompositionException.Issues""/> will
 /// contain a list of errors that occurred.
 /// </exception>
 /// test
@@ -45,7 +45,7 @@ namespace ColorCode.CSharpAcceptanceTests
     @"using System;
 
 /// <exception cref=""Class1"">
-/// An error occurred during composition. <see cref=""Class1.test""/> will 
+/// An error occurred during composition. <see cref=""Class1.test""/> will
 /// contain a list of errors that occurred.
 /// </exception>
 /// test
@@ -246,11 +246,11 @@ Line 3
             public void TransformWillStyleClassName()
             {
                 string source =
-    @"public class ClassName 
+    @"public class ClassName
 {";
                 string expected =
     @"<div style=""color:Black;background-color:White;""><pre>
-<span style=""color:Blue;"">public</span> <span style=""color:Blue;"">class</span> ClassName 
+<span style=""color:Blue;"">public</span> <span style=""color:Blue;"">class</span> ClassName
 {
 </pre></div>";
 

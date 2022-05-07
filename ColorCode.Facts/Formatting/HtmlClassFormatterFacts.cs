@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using ColorCode.Common;
-using ColorCode.Parsing;
-using ColorCode.Stubs;
-using ColorCode.Styling;
+using MarkdownServer.ColorCode.Common;
+using MarkdownServer.ColorCode.Parsing;
+using MarkdownServer.ColorCode.Stubs;
+using MarkdownServer.ColorCode.Styling;
 using Xunit;
 
-namespace ColorCode.Formatting
+namespace MarkdownServer.ColorCode.Formatting
 {
     public class HtmlClassFormatter_Class_Facts
     {

@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace ColorCode.SqlAcceptanceTests
+namespace MarkdownServer.ColorCode.SqlAcceptanceTests
 {
     public class SqlScenarioTests
     {
@@ -56,12 +56,12 @@ namespace ColorCode.SqlAcceptanceTests
             {
                 string source =
     @"UPDATE [TableName]
-SET [ColumnOneName] = 'value' 
+SET [ColumnOneName] = 'value'
 WHERE [ColumnTwoName] > '2008-5-13'";
                 string expected =
     @"<div style=""color:Black;background-color:White;""><pre>
 <span style=""color:Blue;"">UPDATE</span> [TableName]
-<span style=""color:Blue;"">SET</span> [ColumnOneName] = <span style=""color:#A31515;"">&#39;value&#39;</span> 
+<span style=""color:Blue;"">SET</span> [ColumnOneName] = <span style=""color:#A31515;"">&#39;value&#39;</span>
 <span style=""color:Blue;"">WHERE</span> [ColumnTwoName] &gt; <span style=""color:#A31515;"">&#39;2008-5-13&#39;</span>
 </pre></div>";
 

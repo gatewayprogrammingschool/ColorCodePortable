@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using ColorCode.Compilation;
+using MarkdownServer.ColorCode.Compilation;
 
-namespace ColorCode.Stubs
+namespace MarkdownServer.ColorCode.Stubs
 {
     public class StubLanguage : ILanguage
     {
@@ -22,10 +22,10 @@ namespace ColorCode.Stubs
 
         public string Name
         {
-            get 
+            get
             {
-                Name__getInvoked = true; 
-                return name__getValue; 
+                Name__getInvoked = true;
+                return name__getValue;
             }
         }
 
@@ -40,10 +40,10 @@ namespace ColorCode.Stubs
 
         public IList<LanguageRule> Rules
         {
-            get 
+            get
             {
                 Rules__getInvoked = true;
-                return rules__getValue; 
+                return rules__getValue;
             }
         }
 

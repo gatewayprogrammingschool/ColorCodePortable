@@ -1,6 +1,6 @@
-using ColorCode.Styling;
+using MarkdownServer.ColorCode.Styling;
 
-namespace ColorCode.Stubs
+namespace MarkdownServer.ColorCode.Stubs
 {
     public class StubStyleSheet : IStyleSheet
     {

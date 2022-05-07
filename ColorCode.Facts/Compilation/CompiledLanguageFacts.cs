@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Xunit;
 
-namespace ColorCode.Compilation
+namespace MarkdownServer.ColorCode.Compilation
 {
     public class CompiledLanguage_Facts
     {

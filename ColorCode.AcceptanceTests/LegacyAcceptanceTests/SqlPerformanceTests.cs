@@ -4,7 +4,7 @@ using System.IO;
 using System.Reflection;
 using Xunit;
 
-namespace ColorCode.SqlAcceptanceTests
+namespace MarkdownServer.ColorCode.SqlAcceptanceTests
 {
     public class SqlPerformanceTests
     {

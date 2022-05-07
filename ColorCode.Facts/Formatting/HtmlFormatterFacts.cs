@@ -1,4 +1,4 @@
-﻿namespace ColorCode.Formatting
+﻿namespace MarkdownServer.ColorCode.Formatting
 {
     public class HtmlFormatter_Class_Facts
     {
@@ -85,7 +85,7 @@
                 HtmlFormatter formatter = new HtmlFormatter();
                 StubStyleSheet stubStyleSheet = new StubStyleSheet
                                                 {
-                                                    Name__getValue = "fnord", 
+                                                    Name__getValue = "fnord",
                                                     Styles__getValue = new StyleDictionary { new Style(ScopeName.PlainText) { Background = Color.White, Foreground = Color.Black } }
                                                 };
                 StubTextWriter stubTextWriter = new StubTextWriter();
@@ -101,12 +101,12 @@
                 HtmlFormatter formatter = new HtmlFormatter();
                 StubStyleSheet stubStyleSheet = new StubStyleSheet
                                                 {
-                                                    Name__getValue = "fnord", 
+                                                    Name__getValue = "fnord",
                                                     Styles__getValue = new StyleDictionary { new Style(ScopeName.Keyword) { Foreground = Color.Blue } }
                                                 };
                 StubTextWriter stubTextWriter = new StubTextWriter();
                 List<Scope> scopes = new List<Scope> { new Scope(ScopeName.Keyword, 0, 5) };
-                
+
                 formatter.Write("false", scopes, stubStyleSheet, stubTextWriter);
 
                 Assert.Equal("<span style=\"color:Blue;\">false</span>", stubTextWriter.Write__buffer);

@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace ColorCode
+namespace MarkdownServer.ColorCode
 {
     public class JavaScriptAcceptanceTests
     {

@@ -4,7 +4,7 @@ using System.Reflection;
 using Xunit;
 using Xunit.Extensions;
 
-namespace ColorCode
+namespace MarkdownServer.ColorCode
 {
     public class CppAcceptanceTests
     {
@@ -63,7 +63,7 @@ comment line 2
                 Assert.Equal(expected, actual);
             }
         }
-        
+
         public class KeywordTests
         {
             [Theory]

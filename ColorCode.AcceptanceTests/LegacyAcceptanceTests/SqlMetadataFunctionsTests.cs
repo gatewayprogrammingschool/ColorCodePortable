@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace ColorCode.SqlAcceptanceTests
+namespace MarkdownServer.ColorCode.SqlAcceptanceTests
 {
     public class SqlMetadataFunctionsTests
     {
@@ -120,7 +120,7 @@ DECLARE @db_id smallint;
 DECLARE @object_id int;
 SET @db_id = DB_ID(N'AdventureWorks');
 SET @object_id = OBJECT_ID(N'AdventureWorks.Person.Address');
-IF @db_id IS NULL 
+IF @db_id IS NULL
     BEGIN;
         PRINT N'Invalid database';
     END;
@@ -145,7 +145,7 @@ GO
 <span style=""color:Blue;"">DECLARE</span> @object_id <span style=""color:Blue;"">int</span>;
 <span style=""color:Blue;"">SET</span> @db_id = <span style=""color:Magenta;"">DB_ID</span>(N<span style=""color:#A31515;"">&#39;AdventureWorks&#39;</span>);
 <span style=""color:Blue;"">SET</span> @object_id = <span style=""color:Blue;"">OBJECT_ID</span>(N<span style=""color:#A31515;"">&#39;AdventureWorks.Person.Address&#39;</span>);
-<span style=""color:Blue;"">IF</span> @db_id <span style=""color:Blue;"">IS</span> <span style=""color:Blue;"">NULL</span> 
+<span style=""color:Blue;"">IF</span> @db_id <span style=""color:Blue;"">IS</span> <span style=""color:Blue;"">NULL</span>
     <span style=""color:Blue;"">BEGIN</span>;
         <span style=""color:Blue;"">PRINT</span> N<span style=""color:#A31515;"">&#39;Invalid database&#39;</span>;
     <span style=""color:Blue;"">END</span>;
@@ -360,9 +360,9 @@ GO
                 string sourceText =
 @"USE AdventureWorks;
 GO
-SELECT 
+SELECT
     INDEX_COL (N'AdventureWorks.Sales.SalesOrderDetail', 1,1) AS
-        [CaptureIndex Column 1], 
+        [CaptureIndex Column 1],
     INDEX_COL (N'AdventureWorks.Sales.SalesOrderDetail', 1,2) AS
         [CaptureIndex Column 2]
 ;
@@ -371,9 +371,9 @@ GO";
 @"<div style=""color:Black;background-color:White;""><pre>
 <span style=""color:Blue;"">USE</span> AdventureWorks;
 GO
-<span style=""color:Blue;"">SELECT</span> 
+<span style=""color:Blue;"">SELECT</span>
     <span style=""color:Blue;"">INDEX_COL</span> (N<span style=""color:#A31515;"">&#39;AdventureWorks.Sales.SalesOrderDetail&#39;</span>, 1,1) <span style=""color:Blue;"">AS</span>
-        [CaptureIndex Column 1], 
+        [CaptureIndex Column 1],
     <span style=""color:Blue;"">INDEX_COL</span> (N<span style=""color:#A31515;"">&#39;AdventureWorks.Sales.SalesOrderDetail&#39;</span>, 1,2) <span style=""color:Blue;"">AS</span>
         [CaptureIndex Column 2]
 ;
@@ -391,7 +391,7 @@ GO
                 string sourceText =
 @"USE AdventureWorks;
 GO
-SELECT 
+SELECT
     INDEXKEY_PROPERTY(OBJECT_ID('Production.Location', 'U'),
         1,1,'ColumnId') AS [Column ID],
     INDEXKEY_PROPERTY(OBJECT_ID('Production.Location', 'U'),
@@ -400,7 +400,7 @@ SELECT
 @"<div style=""color:Black;background-color:White;""><pre>
 <span style=""color:Blue;"">USE</span> AdventureWorks;
 GO
-<span style=""color:Blue;"">SELECT</span> 
+<span style=""color:Blue;"">SELECT</span>
     <span style=""color:Blue;"">INDEXKEY_PROPERTY</span>(<span style=""color:Blue;"">OBJECT_ID</span>(<span style=""color:#A31515;"">&#39;Production.Location&#39;</span>, <span style=""color:#A31515;"">&#39;U&#39;</span>),
         1,1,<span style=""color:#A31515;"">&#39;ColumnId&#39;</span>) <span style=""color:Blue;"">AS</span> [Column ID],
     <span style=""color:Blue;"">INDEXKEY_PROPERTY</span>(<span style=""color:Blue;"">OBJECT_ID</span>(<span style=""color:#A31515;"">&#39;Production.Location&#39;</span>, <span style=""color:#A31515;"">&#39;U&#39;</span>),
@@ -418,7 +418,7 @@ GO
                 string sourceText =
 @"USE AdventureWorks;
 GO
-SELECT 
+SELECT
     INDEXPROPERTY(OBJECT_ID('HumanResources.Employee'),
         'PK_Employee_EmployeeID','IsClustered')AS [Is Clustered],
     INDEXPROPERTY(OBJECT_ID('HumanResources.Employee'),
@@ -430,7 +430,7 @@ GO";
 @"<div style=""color:Black;background-color:White;""><pre>
 <span style=""color:Blue;"">USE</span> AdventureWorks;
 GO
-<span style=""color:Blue;"">SELECT</span> 
+<span style=""color:Blue;"">SELECT</span>
     <span style=""color:Blue;"">INDEXPROPERTY</span>(<span style=""color:Blue;"">OBJECT_ID</span>(<span style=""color:#A31515;"">&#39;HumanResources.Employee&#39;</span>),
         <span style=""color:#A31515;"">&#39;PK_Employee_EmployeeID&#39;</span>,<span style=""color:#A31515;"">&#39;IsClustered&#39;</span>)<span style=""color:Blue;"">AS</span> [Is Clustered],
     <span style=""color:Blue;"">INDEXPROPERTY</span>(<span style=""color:Blue;"">OBJECT_ID</span>(<span style=""color:#A31515;"">&#39;HumanResources.Employee&#39;</span>),
@@ -464,7 +464,7 @@ DECLARE @db_id smallint;
 DECLARE @object_id int;
 SET @db_id = DB_ID(N'AdventureWorks');
 SET @object_id = OBJECT_ID(N'AdventureWorks.Person.Address');
-IF @db_id IS NULL 
+IF @db_id IS NULL
     BEGIN;
         PRINT N'Invalid database';
     END;
@@ -494,7 +494,7 @@ GO
 <span style=""color:Blue;"">DECLARE</span> @object_id <span style=""color:Blue;"">int</span>;
 <span style=""color:Blue;"">SET</span> @db_id = <span style=""color:Magenta;"">DB_ID</span>(N<span style=""color:#A31515;"">&#39;AdventureWorks&#39;</span>);
 <span style=""color:Blue;"">SET</span> @object_id = <span style=""color:Blue;"">OBJECT_ID</span>(N<span style=""color:#A31515;"">&#39;AdventureWorks.Person.Address&#39;</span>);
-<span style=""color:Blue;"">IF</span> @db_id <span style=""color:Blue;"">IS</span> <span style=""color:Blue;"">NULL</span> 
+<span style=""color:Blue;"">IF</span> @db_id <span style=""color:Blue;"">IS</span> <span style=""color:Blue;"">NULL</span>
     <span style=""color:Blue;"">BEGIN</span>;
         <span style=""color:Blue;"">PRINT</span> N<span style=""color:#A31515;"">&#39;Invalid database&#39;</span>;
     <span style=""color:Blue;"">END</span>;
@@ -559,7 +559,7 @@ GO
 USE AdventureWorks;
 GO
 SELECT name, object_id, type_desc
-FROM sys.objects 
+FROM sys.objects
 WHERE OBJECTPROPERTY(object_id, N'SchemaId') = SCHEMA_ID(N'Production')
 ORDER BY type_desc, name;
 GO";
@@ -583,7 +583,7 @@ GO
 <span style=""color:Blue;"">USE</span> AdventureWorks;
 GO
 <span style=""color:Blue;"">SELECT</span> <span style=""color:Blue;"">name</span>, <span style=""color:Blue;"">object_id</span>, type_desc
-<span style=""color:Blue;"">FROM</span> sys.objects 
+<span style=""color:Blue;"">FROM</span> sys.objects
 <span style=""color:Blue;"">WHERE</span> <span style=""color:Blue;"">OBJECTPROPERTY</span>(<span style=""color:Blue;"">object_id</span>, N<span style=""color:#A31515;"">&#39;SchemaId&#39;</span>) = SCHEMA_ID(N<span style=""color:#A31515;"">&#39;Production&#39;</span>)
 <span style=""color:Blue;"">ORDER</span> <span style=""color:Blue;"">BY</span> type_desc, <span style=""color:Blue;"">name</span>;
 GO

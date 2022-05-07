@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace ColorCode.SqlAcceptanceTests
+namespace MarkdownServer.ColorCode.SqlAcceptanceTests
 {
     public class SqlTextAndImageFunctionsTests
     {
@@ -37,8 +37,8 @@ GO
                 string sourceText =
 @"USE pubs;
 GO
-SELECT pub_id, 'Valid (if 1) Regex data' 
- = TEXTVALID ('pub_info.logo', TEXTPTR(logo)) 
+SELECT pub_id, 'Valid (if 1) Regex data'
+ = TEXTVALID ('pub_info.logo', TEXTPTR(logo))
 FROM pub_info
 ORDER BY pub_id;
 GO";
@@ -46,8 +46,8 @@ GO";
 @"<div style=""color:Black;background-color:White;""><pre>
 <span style=""color:Blue;"">USE</span> pubs;
 GO
-<span style=""color:Blue;"">SELECT</span> pub_id, <span style=""color:#A31515;"">&#39;Valid (if 1) Regex data&#39;</span> 
- = <span style=""color:Blue;"">TEXTVALID</span> (<span style=""color:#A31515;"">&#39;pub_info.logo&#39;</span>, <span style=""color:Blue;"">TEXTPTR</span>(logo)) 
+<span style=""color:Blue;"">SELECT</span> pub_id, <span style=""color:#A31515;"">&#39;Valid (if 1) Regex data&#39;</span>
+ = <span style=""color:Blue;"">TEXTVALID</span> (<span style=""color:#A31515;"">&#39;pub_info.logo&#39;</span>, <span style=""color:Blue;"">TEXTPTR</span>(logo))
 <span style=""color:Blue;"">FROM</span> pub_info
 <span style=""color:Blue;"">ORDER</span> <span style=""color:Blue;"">BY</span> pub_id;
 GO
@@ -65,7 +65,7 @@ GO
 @"USE pubs
 GO
 DECLARE @ptrval varbinary(16)
-SELECT @ptrval = TEXTPTR(logo) 
+SELECT @ptrval = TEXTPTR(logo)
 FROM pub_info pr, publishers p
 WHERE p.pub_id = pr.pub_id
     AND p.pub_name = 'New Moon Books'
@@ -75,7 +75,7 @@ GO";
 <span style=""color:Blue;"">USE</span> pubs
 GO
 <span style=""color:Blue;"">DECLARE</span> @ptrval <span style=""color:Blue;"">varbinary</span>(16)
-<span style=""color:Blue;"">SELECT</span> @ptrval = <span style=""color:Blue;"">TEXTPTR</span>(logo) 
+<span style=""color:Blue;"">SELECT</span> @ptrval = <span style=""color:Blue;"">TEXTPTR</span>(logo)
 <span style=""color:Blue;"">FROM</span> pub_info pr, publishers p
 <span style=""color:Blue;"">WHERE</span> p.pub_id = pr.pub_id
     <span style=""color:Blue;"">AND</span> p.pub_name = <span style=""color:#A31515;"">&#39;New Moon Books&#39;</span>

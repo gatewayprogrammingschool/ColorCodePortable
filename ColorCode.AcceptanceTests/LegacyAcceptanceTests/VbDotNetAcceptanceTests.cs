@@ -2,7 +2,7 @@
 using System.Text;
 using Xunit;
 
-namespace ColorCode
+namespace MarkdownServer.ColorCode
 {
     public class VbDotNetAcceptanceTests
     {
@@ -362,7 +362,7 @@ System.Object
             string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
-        } 
+        }
 
         [Fact]
         public void TransformWillStyleRemoveHandlerStatement()

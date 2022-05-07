@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Xunit;
 
-namespace ColorCode.Styling
+namespace MarkdownServer.ColorCode.Styling
 {
     public class ColorFacts
     {
@@ -1419,6 +1419,6 @@ namespace ColorCode.Styling
             var lhs = new Color(123, 111, 222);
             var rhs = new Color(123, 111, 222);
             Assert.True(lhs.Equals(rhs));
-        }      
+        }
     }
 }

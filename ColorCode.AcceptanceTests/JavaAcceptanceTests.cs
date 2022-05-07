@@ -4,7 +4,7 @@ using System.Reflection;
 using Xunit;
 using Xunit.Extensions;
 
-namespace ColorCode
+namespace MarkdownServer.ColorCode
 {
     public class JavaAcceptanceTests
     {

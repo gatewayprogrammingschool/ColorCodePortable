@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using ColorCode.Stubs;
+using MarkdownServer.ColorCode.Stubs;
 using Xunit;
 
-namespace ColorCode.Compilation
+namespace MarkdownServer.ColorCode.Compilation
 {
     public class LanguageCompiler_Class_Facts
     {

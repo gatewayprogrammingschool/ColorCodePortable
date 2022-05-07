@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace ColorCode.SqlAcceptanceTests
+namespace MarkdownServer.ColorCode.SqlAcceptanceTests
 {
     public class SqlSecurityFunctionsTests
     {
@@ -21,7 +21,7 @@ go
 
 -- Execute SELECT if user is a member of ADVWORKS\Shipping.
 IF IS_MEMBER ('ADVWORKS\Shipping') = 1
-    SELECT 'User ' + USER + ' is a member of ADVWORKS\Shipping.' 
+    SELECT 'User ' + USER + ' is a member of ADVWORKS\Shipping.'
 go";
                 string expected =
 @"<div style=""color:Black;background-color:White;""><pre>
@@ -36,7 +36,7 @@ go
 
 <span style=""color:Green;"">-- Execute SELECT if user is a member of ADVWORKS\Shipping.</span>
 <span style=""color:Blue;"">IF</span> <span style=""color:Blue;"">IS_MEMBER</span> (<span style=""color:#A31515;"">&#39;ADVWORKS\Shipping&#39;</span>) = 1
-    <span style=""color:Blue;"">SELECT</span> <span style=""color:#A31515;"">&#39;User &#39;</span> + <span style=""color:Magenta;"">USER</span> + <span style=""color:#A31515;"">&#39; is a member of ADVWORKS\Shipping.&#39;</span> 
+    <span style=""color:Blue;"">SELECT</span> <span style=""color:#A31515;"">&#39;User &#39;</span> + <span style=""color:Magenta;"">USER</span> + <span style=""color:#A31515;"">&#39; is a member of ADVWORKS\Shipping.&#39;</span>
 go
 </pre></div>";
 
@@ -57,7 +57,7 @@ login_sid   varbinary(85) DEFAULT SUSER_SID(),
 login_name  varchar(30) DEFAULT SYSTEM_USER,
 login_dept  varchar(10) DEFAULT 'SALES',
 login_date  datetime DEFAULT GETDATE()
-) 
+)
 GO
 INSERT sid_example DEFAULT VALUES
 GO";
@@ -71,7 +71,7 @@ login_sid   <span style=""color:Blue;"">varbinary</span>(85) <span style=""color
 login_name  <span style=""color:Blue;"">varchar</span>(30) <span style=""color:Blue;"">DEFAULT</span> <span style=""color:Magenta;"">SYSTEM_USER</span>,
 login_dept  <span style=""color:Blue;"">varchar</span>(10) <span style=""color:Blue;"">DEFAULT</span> <span style=""color:#A31515;"">&#39;SALES&#39;</span>,
 login_date  <span style=""color:Blue;"">datetime</span> <span style=""color:Blue;"">DEFAULT</span> <span style=""color:Magenta;"">GETDATE</span>()
-) 
+)
 GO
 <span style=""color:Blue;"">INSERT</span> sid_example <span style=""color:Blue;"">DEFAULT</span> <span style=""color:Blue;"">VALUES</span>
 GO
@@ -99,7 +99,7 @@ CREATE TABLE sname_example
 login_sname sysname DEFAULT SUSER_SNAME(),
 employee_id uniqueidentifier DEFAULT NEWID(),
 login_date  datetime DEFAULT GETDATE()
-) 
+)
 GO
 INSERT sname_example DEFAULT VALUES
 GO";
@@ -118,7 +118,7 @@ GO
 login_sname <span style=""color:Blue;"">sysname</span> <span style=""color:Blue;"">DEFAULT</span> <span style=""color:Blue;"">SUSER_SNAME</span>(),
 employee_id <span style=""color:Blue;"">uniqueidentifier</span> <span style=""color:Blue;"">DEFAULT</span> <span style=""color:Magenta;"">NEWID</span>(),
 login_date  <span style=""color:Blue;"">datetime</span> <span style=""color:Blue;"">DEFAULT</span> <span style=""color:Magenta;"">GETDATE</span>()
-) 
+)
 GO
 <span style=""color:Blue;"">INSERT</span> sname_example <span style=""color:Blue;"">DEFAULT</span> <span style=""color:Blue;"">VALUES</span>
 GO
@@ -163,7 +163,7 @@ ELSE IF IS_SRVROLEMEMBER ('sysadmin') IS NULL
 ELSE
     PRINT 'ERROR: The current user cannot create a table.';
 
-IF PERMISSIONS(OBJECT_ID('AdventureWorks.Person.Address','U'))&8=8 
+IF PERMISSIONS(OBJECT_ID('AdventureWorks.Person.Address','U'))&8=8
     PRINT 'The current user can insert data into Person.Address.'
 ELSE
     PRINT 'ERROR: The current user cannot insert data into Person.Address.';
@@ -179,7 +179,7 @@ ELSE
 <span style=""color:Blue;"">ELSE</span>
     <span style=""color:Blue;"">PRINT</span> <span style=""color:#A31515;"">&#39;ERROR: The current user cannot create a table.&#39;</span>;
 
-<span style=""color:Blue;"">IF</span> <span style=""color:Blue;"">PERMISSIONS</span>(<span style=""color:Blue;"">OBJECT_ID</span>(<span style=""color:#A31515;"">&#39;AdventureWorks.Person.Address&#39;</span>,<span style=""color:#A31515;"">&#39;U&#39;</span>))&amp;8=8 
+<span style=""color:Blue;"">IF</span> <span style=""color:Blue;"">PERMISSIONS</span>(<span style=""color:Blue;"">OBJECT_ID</span>(<span style=""color:#A31515;"">&#39;AdventureWorks.Person.Address&#39;</span>,<span style=""color:#A31515;"">&#39;U&#39;</span>))&amp;8=8
     <span style=""color:Blue;"">PRINT</span> <span style=""color:#A31515;"">&#39;The current user can insert data into Person.Address.&#39;</span>
 <span style=""color:Blue;"">ELSE</span>
     <span style=""color:Blue;"">PRINT</span> <span style=""color:#A31515;"">&#39;ERROR: The current user cannot insert data into Person.Address.&#39;</span>;

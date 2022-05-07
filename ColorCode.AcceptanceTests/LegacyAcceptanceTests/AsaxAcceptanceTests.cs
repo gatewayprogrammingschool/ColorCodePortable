@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace ColorCode.LegacyAcceptanceTests
+namespace MarkdownServer.ColorCode.LegacyAcceptanceTests
 {
     public class AsaxAcceptanceTests
     {

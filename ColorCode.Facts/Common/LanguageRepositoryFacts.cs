@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using ColorCode.Stubs;
+using MarkdownServer.ColorCode.Stubs;
 using Xunit;
 
-namespace ColorCode.Common
+namespace MarkdownServer.ColorCode.Common
 {
     public class LanguageRepositoryFacts
     {

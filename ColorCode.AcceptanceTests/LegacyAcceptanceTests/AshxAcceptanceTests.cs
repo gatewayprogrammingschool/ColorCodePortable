@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace ColorCode.LegacyAcceptanceTests
+namespace MarkdownServer.ColorCode.LegacyAcceptanceTests
 {
     public class AshxAcceptanceTests
     {
@@ -49,10 +49,10 @@ namespace CodePlex.WebSite.Css
 {
     /// <summary>
     /// StyleSheet.ashx parses and delivers css files submitted through the QueryString
-    /// It replaces constants described by the css file in the form 
-    /// 
+    /// It replaces constants described by the css file in the form
+    ///
     ///     /*{css:ConstantName}*/
-    /// 
+    ///
     /// with the correspondingly named AppSetting Key from the containing directory's .config file
     /// </summary>
     public class StyleSheet : IHttpHandler

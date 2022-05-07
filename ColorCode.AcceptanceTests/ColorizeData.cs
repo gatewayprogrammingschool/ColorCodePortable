@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using ColorCode.Common;
+using MarkdownServer.ColorCode.Common;
 using Xunit.Extensions;
 using Xunit.Sdk;
 
-namespace ColorCode
+namespace MarkdownServer.ColorCode
 {
     public class ColorizeData : DataAttribute
     {
@@ -18,7 +18,7 @@ namespace ColorCode
             List<object[]> colorizeData = new List<object[]>();
 
             string appPath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-            
+
             string[] dirNames = Directory.GetDirectories(Path.Combine(appPath, @"..\..\Data"));
 
             foreach(string dirName in dirNames)
@@ -33,9 +33,9 @@ namespace ColorCode
                     {
                         string fileExtension = sourceFileMatch.Groups[1].Captures[0].Value;
                         string languageId = GetLanguageId(fileExtension);
-                        
+
                         string expectedFileName = sourceFileName.Replace(".source.", ".expected.").Replace("." + fileExtension, ".html");
-                        
+
                         colorizeData.Add(new object[] {languageId, sourceFileName, expectedFileName});
                     }
                 }

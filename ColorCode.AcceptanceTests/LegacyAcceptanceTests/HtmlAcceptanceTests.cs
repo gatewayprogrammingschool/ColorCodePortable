@@ -4,10 +4,10 @@ using System.IO;
 using System.Reflection;
 using Xunit;
 
-namespace ColorCode
+namespace MarkdownServer.ColorCode
 {
     public class HtmlAcceptanceTests
-    {        
+    {
         [Fact]
         public void TransformWillStyleASimpleElement()
         {
@@ -227,12 +227,12 @@ namespace ColorCode
         public void TransformWillStyleLargeHtmlIn1SecondOrLess()
         {
             string appPath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath);
-            
+
             string source = File.ReadAllText(Path.Combine(appPath, @"..\..\LegacyAcceptanceTests\large.html"));
-            
+
             Stopwatch sw = new Stopwatch();
             sw.Start();
-            
+
             new CodeColorizer().Colorize(source, Languages.Html);
 
             sw.Stop();
@@ -305,11 +305,11 @@ namespace ColorCode
         public void WillStyleDoctypeWithLineBreakInDoubleQuotedString()
         {
             string source =
-@"<!DOCTYPE html PUBLIC ""-//W3C//DTD XHTML 
+@"<!DOCTYPE html PUBLIC ""-//W3C//DTD XHTML
     1.1//EN"" ""http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"">";
             string expected =
 @"<div style=""color:Black;background-color:White;""><pre>
-<span style=""color:Blue;"">&lt;!</span><span style=""color:#A31515;"">DOCTYPE</span> <span style=""color:Red;"">html</span> <span style=""color:Red;"">PUBLIC</span> <span style=""color:Blue;"">&quot;-//W3C//DTD XHTML 
+<span style=""color:Blue;"">&lt;!</span><span style=""color:#A31515;"">DOCTYPE</span> <span style=""color:Red;"">html</span> <span style=""color:Red;"">PUBLIC</span> <span style=""color:Blue;"">&quot;-//W3C//DTD XHTML
     1.1//EN&quot;</span> <span style=""color:Blue;"">&quot;http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd&quot;</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
@@ -321,7 +321,7 @@ namespace ColorCode
         [Fact]
         public void WillStyleNumericLetterCodes()
         {
-            string source = 
+            string source =
 @"&#8211;&#710;&OElig;";
             string expected =
 @"<div style=""color:Black;background-color:White;""><pre>
@@ -336,7 +336,7 @@ namespace ColorCode
         [Fact]
         public void WillStyleScriptTags()
         {
-            const string source = 
+            const string source =
 @"<script src=""/script/common.js"" type=""text/javascript""></script>
 <script src=""/script/progress.js"" type=""text/javascript""></script>";
             const string expected =

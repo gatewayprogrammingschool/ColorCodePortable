@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using ColorCode.Parsing;
+using MarkdownServer.ColorCode.Parsing;
 
-namespace ColorCode.Stubs
+namespace MarkdownServer.ColorCode.Stubs
 {
     public class StubLanguageParser : ILanguageParser
     {
@@ -10,7 +10,7 @@ namespace ColorCode.Stubs
         public ILanguage Parse__language;
         public Action<string, IList<Scope>> Parse__parseHandler;
         public Action<string, ILanguage, Action<string, IList<Scope>>> Parse__do;
-        
+
         public void Parse(string sourceCode, ILanguage language, Action<string, IList<Scope>> parseHandler)
         {
             Parse__sourceCode = sourceCode;

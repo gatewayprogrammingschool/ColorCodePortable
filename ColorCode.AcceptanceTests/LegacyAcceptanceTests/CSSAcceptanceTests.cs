@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace ColorCode.LegacyAcceptanceTests
+namespace MarkdownServer.ColorCode.LegacyAcceptanceTests
 {
     public class CSSAcceptanceTests
     {
@@ -36,7 +36,7 @@ line
 	margin-right: 20px;
 	margin-top: 4px;
 	margin-left: 20px;
-	
+
 }
 
 .AutoCompletePanel
@@ -47,7 +47,7 @@ line
 
 .MSMarginBottom
 {
-	margin-bottom:2em;	
+	margin-bottom:2em;
 	width: 30em;
 }
 
@@ -63,7 +63,7 @@ line
 	background-color:#ECECEC;
 }
 
-.Grid .Header 
+.Grid .Header
 {
 	background-color:#ECECEC;
 }
@@ -88,7 +88,7 @@ li
 	padding-left: 0.4em;
 }
 
-.IE7 .workItemDetails .rightCellEditable 
+.IE7 .workItemDetails .rightCellEditable
 {
 	padding-left: 0.4em;
 }
@@ -139,7 +139,7 @@ li
 	color: black;
 	padding-top: 0.3em;
 	padding-bottom:10px;
-	
+
 	padding-left:1em;
 	padding-right:1em;
 	width:98%;
@@ -217,7 +217,7 @@ li
 	background-image:url(/images/tag_bg.jpg);
 }
 
-.TagMSDNBody 
+.TagMSDNBody
 {
 	padding: 0.3em;
 	font-size: 1.3em;
@@ -236,7 +236,7 @@ li
 
 
 /*TagColor Styles */
-.TagMSDNHeader 
+.TagMSDNHeader
 {
 	background-color: #3B3E3F;
 	color: White;
@@ -245,7 +245,7 @@ li
 	font-size: 1.3em;
 }
 
-.TagMSDNHeader a:link, .TagMSDNHeader a:visited 
+.TagMSDNHeader a:link, .TagMSDNHeader a:visited
 {
 	color: White;
 }
@@ -275,9 +275,9 @@ li
 	float: left;
 	padding-right: 0.1em;
 }
-	
+
 .ContentPanel .RoundedContent .MSDNAboutSubPanel .Header
-{	
+{
     color:#FFFFFF;
     padding-top:.4em;
     margin:0px;
@@ -286,12 +286,12 @@ li
 }
 
 .ContentPanel .MSDNAboutSubPanel .Content
-{	
+{
 	padding:.5em;
-	height:6em; 
+	height:6em;
 }
 
-.ContentPanel .MSDNAboutSubPanel .RoundedContent 
+.ContentPanel .MSDNAboutSubPanel .RoundedContent
 {
 	background-color: Transparent;
 }
@@ -312,7 +312,7 @@ li
     position:relative;
 }
 
-.ContentPanel .RoundedContent, 
+.ContentPanel .RoundedContent,
 .AlternateBackgroundPanel .RoundedContent,
 .AlternateBackgroundPanel .RoundedBorder,
 .ContentPanel .TopBorder {
@@ -331,7 +331,7 @@ li
 .ContentPanel .RoundedContent .HeaderPanel
 {
 	background-color: Transparent;
-	
+
 }
 
 
@@ -625,10 +625,10 @@ width:4px;
 /* http://positioniseverything.net/easyclearing */
 
 .clearfix:after {
-	content: "".""; 
-	display: block; 
-	height: 0; 
-	clear: both; 
+	content: ""."";
+	display: block;
+	height: 0;
+	clear: both;
 	visibility: hidden;
 }
 
@@ -662,7 +662,7 @@ img.DropDownArrow {
 }
 
 .PassportScarab {
-    
+
 	font-weight: bold;
     vertical-align: middle;
     position:absolute;
@@ -762,7 +762,7 @@ img.DropDownArrow {
 	width: 100%;
 }
 
-.IE6 .ThinNavBox 
+.IE6 .ThinNavBox
 {
     height: 56px;
 }
@@ -873,7 +873,7 @@ div#TextBoxSearchDiv input[type=""text""] {
 	visibility: hidden;
 	display: none;
 }
-/* Watermark 
+/* Watermark
 .TextBoxSearch {
     float: left;
     height: 16px;
@@ -892,7 +892,7 @@ div#TextBoxSearchDiv input[type=""text""] {
 
 
 .EmptyTextBox {
-	COLOR: GrayText! important; 
+	COLOR: GrayText! important;
 	FONT-STYLE: italic;
 }
 
@@ -977,7 +977,7 @@ a.ContextMenuItemSelected:hover {
 
 div.FooterLinks {
 	float: left;
-	margin-bottom: 10px;	
+	margin-bottom: 10px;
 }
 
 div.FooterLogo {
@@ -1010,7 +1010,7 @@ a.FooterLinks:hover, div.FooterLinks a:hover {
 
 .MSDNNavBox
 {
-	
+
 	display:block;
 	color:#CCCCCC;
 	margin-top:1em;
@@ -1026,7 +1026,7 @@ a.FooterLinks:hover, div.FooterLinks a:hover {
 
 .MSDNNavBox .RoundedContent .HeaderPanel
 {
-	
+
 	padding-left:10px;
 	padding-right:10px;
 	padding-top:5px;
@@ -1058,7 +1058,7 @@ a.FooterLinks:hover, div.FooterLinks a:hover {
 /* Junk */
 
 	BODY {
-		FONT-SIZE: 0.7em; MARGIN: 0px; FONT-STYLE: normal; POSITION: relative; HEIGHT: 100%; BACKGROUND-COLOR: #fff; 
+		FONT-SIZE: 0.7em; MARGIN: 0px; FONT-STYLE: normal; POSITION: relative; HEIGHT: 100%; BACKGROUND-COLOR: #fff;
 	}
 	BODY {
 		FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif, Geneva;
@@ -1209,7 +1209,7 @@ a.FooterLinks:hover, div.FooterLinks a:hover {
 #ProjectRelease #VoteBoxCell
 {
 	width:6em !important;
-	overflow:hidden; 
+	overflow:hidden;
 	min-width:5em;
 }
 
@@ -1240,7 +1240,7 @@ a.FooterLinks:hover, div.FooterLinks a:hover {
 	background-color:#959595; /*#E6E6E6*/
 }
 
-.WorkItemAdvancedView .Header a:link 
+.WorkItemAdvancedView .Header a:link
 {
 	color: White;
 }
@@ -1265,7 +1265,7 @@ a.FooterLinks:hover, div.FooterLinks a:hover {
 	height: 1.7em;
 }
 
-.RightPanelMinHeight 
+.RightPanelMinHeight
 {
 	height: auto !important;
 	min-height: 0 !important;

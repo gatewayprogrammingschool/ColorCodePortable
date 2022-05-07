@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.IO;
-using ColorCode.Parsing;
+using MarkdownServer.ColorCode.Parsing;
 
-namespace ColorCode.Stubs
+namespace MarkdownServer.ColorCode.Stubs
 {
     internal class StubFormatter : IFormatter
     {

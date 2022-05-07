@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using ColorCode.Parsing;
-using ColorCode.Stubs;
+using MarkdownServer.ColorCode.Parsing;
+using MarkdownServer.ColorCode.Stubs;
 using Xunit;
 
-namespace ColorCode
+namespace MarkdownServer.ColorCode
 {
     public class CodeColorizerFacts
     {
@@ -21,7 +21,7 @@ namespace ColorCode
                 Assert.Equal("languageParser", ((ArgumentNullException)ex).ParamName);
             }
         }
-        
+
         public class The_Colorize_method
         {
             [Fact]
@@ -60,7 +60,7 @@ namespace ColorCode
                 StubLanguageParser languageParser = new StubLanguageParser();
                 languageParser.Parse__do = (sourceCodeToParse, language, parsedSourceCodeHandler) =>
                 {
-                    parsedSourceCodeHandler("parsedSourceCode1", new List<Scope>()); 
+                    parsedSourceCodeHandler("parsedSourceCode1", new List<Scope>());
                     parsedSourceCodeHandler("parsedSourceCode2", new List<Scope>());
                 };
                 CodeColorizer codeColorizer = new CodeColorizer(languageParser);

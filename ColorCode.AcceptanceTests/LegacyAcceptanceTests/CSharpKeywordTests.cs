@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace ColorCode.CSharpAcceptanceTests
+namespace MarkdownServer.ColorCode.CSharpAcceptanceTests
 {
     public class CSharpKeywordTests
     {

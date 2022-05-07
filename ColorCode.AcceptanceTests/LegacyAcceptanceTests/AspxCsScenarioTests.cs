@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace ColorCode.AspxCsAcceptanceTests
+namespace MarkdownServer.ColorCode.AspxCsAcceptanceTests
 {
     public class AspxCsScenarioTests
     {
@@ -8,7 +8,7 @@ namespace ColorCode.AspxCsAcceptanceTests
         {
             return Languages.AspxCs;
         }
-        
+
         public class Transform
         {
             [Fact]
@@ -145,11 +145,11 @@ namespace ColorCode.AspxCsAcceptanceTests
             public void WillStyleDoctypeWithLineBreakInDoubleQuotedString()
             {
                 string source =
-@"<!DOCTYPE html PUBLIC ""-//W3C//DTD XHTML 
+@"<!DOCTYPE html PUBLIC ""-//W3C//DTD XHTML
     1.1//EN"" ""http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"">";
                 string expected =
 @"<div style=""color:Black;background-color:White;""><pre>
-<span style=""color:Blue;"">&lt;!</span><span style=""color:#A31515;"">DOCTYPE</span> <span style=""color:Red;"">html</span> <span style=""color:Red;"">PUBLIC</span> <span style=""color:Blue;"">&quot;-//W3C//DTD XHTML 
+<span style=""color:Blue;"">&lt;!</span><span style=""color:#A31515;"">DOCTYPE</span> <span style=""color:Red;"">html</span> <span style=""color:Red;"">PUBLIC</span> <span style=""color:Blue;"">&quot;-//W3C//DTD XHTML
     1.1//EN&quot;</span> <span style=""color:Blue;"">&quot;http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd&quot;</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 

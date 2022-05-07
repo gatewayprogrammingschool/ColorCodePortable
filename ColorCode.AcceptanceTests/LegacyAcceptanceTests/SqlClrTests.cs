@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace ColorCode.SqlAcceptanceTests
+namespace MarkdownServer.ColorCode.SqlAcceptanceTests
 {
     public class SqlClrTests
     {
@@ -11,23 +11,23 @@ namespace ColorCode.SqlAcceptanceTests
             {
                 string sourceText =
                     @"DECLARE @SamplesPath nvarchar(1024)
-SELECT @SamplesPath = REPLACE(physical_name, 
-    'Microsoft SQL Server\MSSQL.1\MSSQL\DATA\master.mdf', 
-    'Microsoft SQL Server\90\Samples\Engine\Programmability\CLR\') 
-FROM master.sys.database_files 
+SELECT @SamplesPath = REPLACE(physical_name,
+    'Microsoft SQL Server\MSSQL.1\MSSQL\DATA\master.mdf',
+    'Microsoft SQL Server\90\Samples\Engine\Programmability\CLR\')
+FROM master.sys.database_files
 WHERE name = 'master';
-CREATE ASSEMBLY HelloWorld 
+CREATE ASSEMBLY HelloWorld
 FROM @SamplesPath + 'HelloWorld\CS\HelloWorld\bin\debug\HelloWorld.dll'
 WITH PERMISSION_SET = SAFE;";
                 string expected =
                     @"<div style=""color:Black;background-color:White;""><pre>
 <span style=""color:Blue;"">DECLARE</span> @SamplesPath <span style=""color:Blue;"">nvarchar</span>(1024)
-<span style=""color:Blue;"">SELECT</span> @SamplesPath = <span style=""color:Magenta;"">REPLACE</span>(physical_name, 
-    <span style=""color:#A31515;"">&#39;Microsoft SQL Server\MSSQL.1\MSSQL\DATA\master.mdf&#39;</span>, 
-    <span style=""color:#A31515;"">&#39;Microsoft SQL Server\90\Samples\Engine\Programmability\CLR\&#39;</span>) 
-<span style=""color:Blue;"">FROM</span> master.sys.database_files 
+<span style=""color:Blue;"">SELECT</span> @SamplesPath = <span style=""color:Magenta;"">REPLACE</span>(physical_name,
+    <span style=""color:#A31515;"">&#39;Microsoft SQL Server\MSSQL.1\MSSQL\DATA\master.mdf&#39;</span>,
+    <span style=""color:#A31515;"">&#39;Microsoft SQL Server\90\Samples\Engine\Programmability\CLR\&#39;</span>)
+<span style=""color:Blue;"">FROM</span> master.sys.database_files
 <span style=""color:Blue;"">WHERE</span> <span style=""color:Blue;"">name</span> = <span style=""color:#A31515;"">&#39;master&#39;</span>;
-<span style=""color:Blue;"">CREATE</span> <span style=""color:Blue;"">ASSEMBLY</span> HelloWorld 
+<span style=""color:Blue;"">CREATE</span> <span style=""color:Blue;"">ASSEMBLY</span> HelloWorld
 <span style=""color:Blue;"">FROM</span> @SamplesPath + <span style=""color:#A31515;"">&#39;HelloWorld\CS\HelloWorld\bin\debug\HelloWorld.dll&#39;</span>
 <span style=""color:Blue;"">WITH</span> PERMISSION_SET = SAFE;
 </pre></div>";
@@ -41,11 +41,11 @@ WITH PERMISSION_SET = SAFE;";
             public void WillStyleAlterAssembly()
             {
                 string sourceText =
-                    @"ALTER ASSEMBLY MyClass 
+                    @"ALTER ASSEMBLY MyClass
 ADD FILE FROM 'C:\MyClassProject\Class1.cs';";
                 string expected =
                     @"<div style=""color:Black;background-color:White;""><pre>
-<span style=""color:Blue;"">ALTER</span> <span style=""color:Blue;"">ASSEMBLY</span> MyClass 
+<span style=""color:Blue;"">ALTER</span> <span style=""color:Blue;"">ASSEMBLY</span> MyClass
 <span style=""color:Blue;"">ADD</span> <span style=""color:Blue;"">FILE</span> <span style=""color:Blue;"">FROM</span> <span style=""color:#A31515;"">&#39;C:\MyClassProject\Class1.cs&#39;</span>;
 </pre></div>";
 
@@ -78,8 +78,8 @@ GO
 DECLARE @SamplesPath nvarchar(1024)
 -- You may have to modify the value of the this variable if you have
 --installed the sample some location other than the default location.
-SELECT @SamplesPath = REPLACE(physical_name, 'Microsoft SQL Server\MSSQL.1\MSSQL\DATA\master.mdf', 'Microsoft SQL Server\90\Samples\Engine\Programmability\CLR\') 
-    FROM master.sys.database_files 
+SELECT @SamplesPath = REPLACE(physical_name, 'Microsoft SQL Server\MSSQL.1\MSSQL\DATA\master.mdf', 'Microsoft SQL Server\90\Samples\Engine\Programmability\CLR\')
+    FROM master.sys.database_files
     WHERE name = 'master';
 CREATE ASSEMBLY StringUtilities FROM @SamplesPath + 'StringUtilities\CS\StringUtilities\bin\debug\StringUtilities.dll'
 WITH PERMISSION_SET=SAFE;
@@ -96,8 +96,8 @@ GO
 <span style=""color:Blue;"">DECLARE</span> @SamplesPath <span style=""color:Blue;"">nvarchar</span>(1024)
 <span style=""color:Green;"">-- You may have to modify the value of the this variable if you have</span>
 <span style=""color:Green;"">--installed the sample some location other than the default location.</span>
-<span style=""color:Blue;"">SELECT</span> @SamplesPath = <span style=""color:Magenta;"">REPLACE</span>(physical_name, <span style=""color:#A31515;"">&#39;Microsoft SQL Server\MSSQL.1\MSSQL\DATA\master.mdf&#39;</span>, <span style=""color:#A31515;"">&#39;Microsoft SQL Server\90\Samples\Engine\Programmability\CLR\&#39;</span>) 
-    <span style=""color:Blue;"">FROM</span> master.sys.database_files 
+<span style=""color:Blue;"">SELECT</span> @SamplesPath = <span style=""color:Magenta;"">REPLACE</span>(physical_name, <span style=""color:#A31515;"">&#39;Microsoft SQL Server\MSSQL.1\MSSQL\DATA\master.mdf&#39;</span>, <span style=""color:#A31515;"">&#39;Microsoft SQL Server\90\Samples\Engine\Programmability\CLR\&#39;</span>)
+    <span style=""color:Blue;"">FROM</span> master.sys.database_files
     <span style=""color:Blue;"">WHERE</span> <span style=""color:Blue;"">name</span> = <span style=""color:#A31515;"">&#39;master&#39;</span>;
 <span style=""color:Blue;"">CREATE</span> <span style=""color:Blue;"">ASSEMBLY</span> StringUtilities <span style=""color:Blue;"">FROM</span> @SamplesPath + <span style=""color:#A31515;"">&#39;StringUtilities\CS\StringUtilities\bin\debug\StringUtilities.dll&#39;</span>
 <span style=""color:Blue;"">WITH</span> PERMISSION_SET=SAFE;
@@ -134,7 +134,7 @@ GO
                 string sourceText = @"CREATE ASSEMBLY utf8string
 FROM '\\ComputerName\utf8string\utf8string.dll' ;
 GO
-CREATE TYPE Utf8String 
+CREATE TYPE Utf8String
 EXTERNAL NAME utf8string.[Microsoft.Samples.SqlServer.utf8string] ;
 GO";
                 string expected =
@@ -142,7 +142,7 @@ GO";
 <span style=""color:Blue;"">CREATE</span> <span style=""color:Blue;"">ASSEMBLY</span> utf8string
 <span style=""color:Blue;"">FROM</span> <span style=""color:#A31515;"">&#39;\\ComputerName\utf8string\utf8string.dll&#39;</span> ;
 GO
-<span style=""color:Blue;"">CREATE</span> <span style=""color:Blue;"">TYPE</span> Utf8String 
+<span style=""color:Blue;"">CREATE</span> <span style=""color:Blue;"">TYPE</span> Utf8String
 <span style=""color:Blue;"">EXTERNAL</span> <span style=""color:Blue;"">NAME</span> utf8string.[Microsoft.Samples.SqlServer.utf8string] ;
 GO
 </pre></div>";

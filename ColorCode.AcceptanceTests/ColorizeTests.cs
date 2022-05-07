@@ -2,7 +2,7 @@
 using Xunit;
 using Xunit.Extensions;
 
-namespace ColorCode
+namespace MarkdownServer.ColorCode
 {
     public class ColorizeTests
     {
@@ -16,7 +16,7 @@ namespace ColorCode
 
             string actualHtml = new CodeColorizer().Colorize(sourceCode, language);
             File.WriteAllText(expectedFileName.Replace(".expected.", ".actual."), actualHtml);
-            
+
             Assert.Equal(expectedHtml, actualHtml);
         }
     }
