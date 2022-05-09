@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Xunit;
 
-namespace MarkdownServer.ColorCode.Compilation
+namespace MDS.ColorCode.Compilation
 {
     public class LanguageRule_Facts
     {

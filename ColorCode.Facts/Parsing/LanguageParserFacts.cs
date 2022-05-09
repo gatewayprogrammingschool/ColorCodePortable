@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using MarkdownServer.ColorCode.Compilation;
-using MarkdownServer.ColorCode.Stubs;
+using MDS.ColorCode.Compilation;
+using MDS.ColorCode.Stubs;
 using Xunit;
 
-namespace MarkdownServer.ColorCode.Parsing
+namespace MDS.ColorCode.Parsing
 {
     public class LanguageParser_Facts
     {

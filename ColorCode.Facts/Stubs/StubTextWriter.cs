@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Text;
 
-namespace MarkdownServer.ColorCode.Stubs
+namespace MDS.ColorCode.Stubs
 {
     internal class StubTextWriter : TextWriter
     {

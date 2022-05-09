@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using MarkdownServer.ColorCode.Common;
+using MDS.ColorCode.Common;
 using Xunit.Extensions;
 using Xunit.Sdk;
 
-namespace MarkdownServer.ColorCode
+namespace MDS.ColorCode
 {
     public class ColorizeData : DataAttribute
     {

@@ -2,7 +2,7 @@
 using Xunit;
 using Xunit.Extensions;
 
-namespace MarkdownServer.ColorCode
+namespace MDS.ColorCode
 {
     public class ColorizeTests
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using Xunit;
 
-namespace MarkdownServer.ColorCode.CSharpAcceptanceTests
+namespace MDS.ColorCode.CSharpAcceptanceTests
 {
     public class CSharpScenarioTests
     {

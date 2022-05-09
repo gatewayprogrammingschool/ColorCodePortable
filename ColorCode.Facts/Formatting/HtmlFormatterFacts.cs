@@ -1,4 +1,4 @@
-﻿namespace MarkdownServer.ColorCode.Formatting
+﻿namespace MDS.ColorCode.Formatting
 {
     public class HtmlFormatter_Class_Facts
     {

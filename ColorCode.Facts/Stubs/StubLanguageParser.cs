@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using MarkdownServer.ColorCode.Parsing;
+using MDS.ColorCode.Parsing;
 
-namespace MarkdownServer.ColorCode.Stubs
+namespace MDS.ColorCode.Stubs
 {
     public class StubLanguageParser : ILanguageParser
     {

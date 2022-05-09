@@ -1,4 +1,4 @@
-﻿namespace MarkdownServer.ColorCode
+﻿namespace MDS.ColorCode
 {
     public static class AcceptanceHelper
     {

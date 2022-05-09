@@ -1,7 +1,7 @@
 using System;
-using MarkdownServer.ColorCode.Compilation;
+using MDS.ColorCode.Compilation;
 
-namespace MarkdownServer.ColorCode.Stubs
+namespace MDS.ColorCode.Stubs
 {
     public class StubLanguageCompiler : ILanguageCompiler
     {

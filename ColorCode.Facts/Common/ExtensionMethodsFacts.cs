@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using MarkdownServer.ColorCode.Common;
-using MarkdownServer.ColorCode.Styling;
+using MDS.ColorCode.Common;
+using MDS.ColorCode.Styling;
 using Xunit;
 
-namespace MarkdownServer.ColorCode.Common
+namespace MDS.ColorCode.Common
 {
     public class ExtensionMethods_Facts
     {

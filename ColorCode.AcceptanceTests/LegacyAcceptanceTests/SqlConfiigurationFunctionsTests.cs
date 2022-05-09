@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace MarkdownServer.ColorCode.SqlAcceptanceTests
+namespace MDS.ColorCode.SqlAcceptanceTests
 {
     public class SqlConfigurationFunctionsTests
     {

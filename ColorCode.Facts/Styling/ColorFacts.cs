@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Xunit;
 
-namespace MarkdownServer.ColorCode.Styling
+namespace MDS.ColorCode.Styling
 {
     public class ColorFacts
     {

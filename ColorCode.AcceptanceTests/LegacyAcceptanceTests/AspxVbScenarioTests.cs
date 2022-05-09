@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace MarkdownServer.ColorCode.AspxVbAcceptanceTests
+namespace MDS.ColorCode.AspxVbAcceptanceTests
 {
     public class AspxVbScenarioTests
     {

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using MarkdownServer.ColorCode.Parsing;
-using MarkdownServer.ColorCode.Stubs;
+using MDS.ColorCode.Parsing;
+using MDS.ColorCode.Stubs;
 using Xunit;
 
-namespace MarkdownServer.ColorCode
+namespace MDS.ColorCode
 {
     public class CodeColorizerFacts
     {

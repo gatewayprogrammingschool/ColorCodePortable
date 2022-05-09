@@ -1,7 +1,7 @@
 ﻿using System;
 using Xunit;
 
-namespace MarkdownServer.ColorCode.Parsing
+namespace MDS.ColorCode.Parsing
 {
     public class Scope_Class_Facts
     {

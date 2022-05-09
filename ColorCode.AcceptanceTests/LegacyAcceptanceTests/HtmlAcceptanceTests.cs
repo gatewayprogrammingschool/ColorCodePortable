@@ -4,7 +4,7 @@ using System.IO;
 using System.Reflection;
 using Xunit;
 
-namespace MarkdownServer.ColorCode
+namespace MDS.ColorCode
 {
     public class HtmlAcceptanceTests
     {

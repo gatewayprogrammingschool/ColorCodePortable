@@ -2,7 +2,7 @@
 using System.Text;
 using Xunit;
 
-namespace MarkdownServer.ColorCode
+namespace MDS.ColorCode
 {
     public class VbDotNetAcceptanceTests
     {

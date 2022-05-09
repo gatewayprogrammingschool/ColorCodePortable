@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using MarkdownServer.ColorCode.Common;
+using MDS.ColorCode.Common;
 
-namespace MarkdownServer.ColorCode.Stubs
+namespace MDS.ColorCode.Stubs
 {
     public class StubLanguageRepository : ILanguageRepository
     {
