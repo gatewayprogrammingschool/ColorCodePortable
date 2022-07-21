@@ -19,9 +19,7 @@ namespace MDS.ColorCode
         /// Initializes a new instance of the <see cref="CodeColorizer"/> class.
         /// </summary>
         public CodeColorizer()
-        {
-            languageParser = new LanguageParser(new LanguageCompiler(Languages.CompiledLanguages), Languages.LanguageRepository);
-        }
+            => languageParser = new LanguageParser(new LanguageCompiler(Languages.CompiledLanguages), Languages.LanguageRepository);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CodeColorizer"/> class.

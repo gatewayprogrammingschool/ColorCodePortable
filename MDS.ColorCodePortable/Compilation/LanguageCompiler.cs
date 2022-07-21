@@ -9,7 +9,7 @@ namespace MDS.ColorCode.Compilation
 {
     public class LanguageCompiler : ILanguageCompiler
     {
-        private static readonly Regex numberOfCapturesRegex = new Regex(@"(?x)(?<!(\\|(?!\\)\(\?))\((?!\?)", Compiled());
+        private static readonly Regex numberOfCapturesRegex = new(@"(?x)(?<!(\\|(?!\\)\(\?))\((?!\?)", Compiled());
         private readonly Dictionary<string, CompiledLanguage> compiledLanguages;
         private readonly ReaderWriterLockSlim compileLock;
 
@@ -17,7 +17,7 @@ namespace MDS.ColorCode.Compilation
         {
             this.compiledLanguages = compiledLanguages;
 
-            compileLock = new ReaderWriterLockSlim();
+            compileLock = new();
         }
 
         public CompiledLanguage Compile(ILanguage language)
@@ -97,14 +97,14 @@ namespace MDS.ColorCode.Compilation
 
             CompileRules(language.Rules, out regex, out captures);
 
-            return new CompiledLanguage(id, name, regex, captures);
+            return new(id, name, regex, captures);
         }
 
         private static void CompileRules(IList<LanguageRule> rules,
                                          out Regex regex,
                                          out IList<string> captures)
         {
-            StringBuilder regexBuilder = new StringBuilder();
+            StringBuilder regexBuilder = new();
             captures = new List<string>();
 
             regexBuilder.AppendLine("(?x)");
@@ -117,7 +117,7 @@ namespace MDS.ColorCode.Compilation
             for (int i = 1; i < rules.Count; i++)
                 CompileRule(rules[i], regexBuilder, captures, false);
 
-            regex = new Regex(regexBuilder.ToString());
+            regex = new(regexBuilder.ToString());
         }
 
 
@@ -160,8 +160,6 @@ namespace MDS.ColorCode.Compilation
         }
 
         private static int GetNumberOfCaptures(string regex)
-        {
-            return numberOfCapturesRegex.Matches(regex).Count;
-        }
+            => numberOfCapturesRegex.Matches(regex).Count;
     }
 }

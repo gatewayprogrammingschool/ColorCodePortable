@@ -70,8 +70,6 @@ namespace MDS.ColorCode
         /// Returns the scope name if specified, or String.Empty otherwise.
         /// </remarks>
         public override string ToString()
-        {
-            return ScopeName ?? string.Empty;
-        }
+            => ScopeName ?? string.Empty;
     }
 }

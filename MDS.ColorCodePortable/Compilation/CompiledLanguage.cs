@@ -30,8 +30,6 @@ namespace MDS.ColorCode.Compilation
         public Regex Regex { get; set; }
 
         public override string ToString()
-        {
-            return Name;
-        }
+            => Name;
     }
 }

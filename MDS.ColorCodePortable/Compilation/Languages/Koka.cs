@@ -6,20 +6,11 @@ namespace MDS.ColorCode.Compilation.Languages
 {
     public class Koka : ILanguage
     {
-        public string Id
-        {
-            get { return LanguageId.Koka; }
-        }
+        public string Id => LanguageId.Koka;
 
-        public string Name
-        {
-            get { return "Koka"; }
-        }
+        public string Name => "Koka";
 
-        public string CssClassName
-        {
-            get { return "koka"; }
-        }
+        public string CssClassName => "koka";
 
         public string FirstLinePattern
         {
@@ -48,182 +39,176 @@ namespace MDS.ColorCode.Compilation.Languages
 
         private const string escape = @"\\(?:[nrt\\""']|x[\da-fA-F]{2}|u[\da-fA-F]{4}|U[\da-fA-F]{6})";
 
-        public IList<LanguageRule> Rules
-        {
-            get
-            {
-                return new List<LanguageRule> {
-                    // Nested block comments. note: does not match on unclosed comments
-                    new LanguageRule(
-                      // Handle nested block comments using named balanced groups
-                      @"/\*" + incomment +
-                      @"(" +
-                       @"((?<comment>/\*)" + incomment + ")+" +
-                       @"((?<-comment>\*/)" + incomment + ")+" +
-                      @")*" +
-                      @"(\*+/)",
-                      new Dictionary<int, string>
-                          {
-                              { 0, ScopeName.Comment },
-                          }),
+        public IList<LanguageRule> Rules => new List<LanguageRule> {
+            // Nested block comments. note: does not match on unclosed comments
+            new(
+                // Handle nested block comments using named balanced groups
+                @"/\*" + incomment +
+                @"(" +
+                @"((?<comment>/\*)" + incomment + ")+" +
+                @"((?<-comment>\*/)" + incomment + ")+" +
+                @")*" +
+                @"(\*+/)",
+                new Dictionary<int, string>
+                {
+                    { 0, ScopeName.Comment },
+                }),
 
-                   // Line comments
-                   new LanguageRule(
-                        @"(//.*?)\r?$",
-                        new Dictionary<int, string>
-                            {
-                                { 1, ScopeName.Comment }
-                            }),
+            // Line comments
+            new(
+                @"(//.*?)\r?$",
+                new Dictionary<int, string>
+                {
+                    { 1, ScopeName.Comment },
+                }),
 
-                    // operator keywords
-                    new LanguageRule(
-                        @"(?<!" + symbol + ")(" + opkeywords + @")(?!" + symbol + @")",
-                        new Dictionary<int, string>
-                            {
-                                { 1, ScopeName.Keyword }
-                            }),
+            // operator keywords
+            new(
+                @"(?<!" + symbol + ")(" + opkeywords + @")(?!" + symbol + @")",
+                new Dictionary<int, string>
+                {
+                    { 1, ScopeName.Keyword },
+                }),
 
-                    // Types
-                    new LanguageRule(
-                        // Type highlighting using named balanced groups to balance parenthesized sub types
-                        // 'toptype' captures two groups: type keyword and type variables
-                        // each 'nestedtype' captures three groups: parameter names, type keywords and type variables
-                        @"(?:" + @"\b(type|struct|cotype|rectype)\b|"
-                               + @"::?(?!" + symbol + ")|"
-                               + @"\b(alias)\s+[a-z]\w+\s*(?:<[^>]*>\s*)?(=)" + ")"
-                               + toptype + "*" +
-                        @"(?:" +
-                         @"(?:(?<type>[\(\[<])(?:" + nestedtype + @"|[,]" + @")*)+" +
-                         @"(?:(?<-type>[\)\]>])(?:" + nestedtype + @"|(?(type)[,])" + @")*)+" +
-                        @")*" +
-                        @"", //(?=(?:[,\)\{\}\]<>]|(" + keywords +")\b))",
-                        new Dictionary<int,string> {
-                            { 0, ScopeName.Type },
+            // Types
+            new(
+                // Type highlighting using named balanced groups to balance parenthesized sub types
+                // 'toptype' captures two groups: type keyword and type variables
+                // each 'nestedtype' captures three groups: parameter names, type keywords and type variables
+                @"(?:" + @"\b(type|struct|cotype|rectype)\b|"
+                       + @"::?(?!" + symbol + ")|"
+                       + @"\b(alias)\s+[a-z]\w+\s*(?:<[^>]*>\s*)?(=)" + ")"
+                       + toptype + "*" +
+                       @"(?:" +
+                       @"(?:(?<type>[\(\[<])(?:" + nestedtype + @"|[,]" + @")*)+" +
+                       @"(?:(?<-type>[\)\]>])(?:" + nestedtype + @"|(?(type)[,])" + @")*)+" +
+                       @")*" +
+                       @"", //(?=(?:[,\)\{\}\]<>]|(" + keywords +")\b))",
+                new Dictionary<int,string> {
+                    { 0, ScopeName.Type },
 
-                            { 1, ScopeName.Keyword },   // type struct etc
-                            { 2, ScopeName.Keyword },   // alias
-                            { 3, ScopeName.Keyword },   //  =
+                    { 1, ScopeName.Keyword },   // type struct etc
+                    { 2, ScopeName.Keyword },   // alias
+                    { 3, ScopeName.Keyword },   //  =
 
-                            { 4, ScopeName.Keyword},
-                            { 5, ScopeName.TypeVariable },
+                    { 4, ScopeName.Keyword},
+                    { 5, ScopeName.TypeVariable },
 
-                            { 6, ScopeName.PlainText },
-                            { 7, ScopeName.Keyword },
-                            { 8, ScopeName.TypeVariable },
+                    { 6, ScopeName.PlainText },
+                    { 7, ScopeName.Keyword },
+                    { 8, ScopeName.TypeVariable },
 
-                            { 9, ScopeName.PlainText },
-                            { 10, ScopeName.Keyword },
-                            { 11, ScopeName.TypeVariable },
-                        }),
+                    { 9, ScopeName.PlainText },
+                    { 10, ScopeName.Keyword },
+                    { 11, ScopeName.TypeVariable },
+                }),
 
-                    // module and imports
-                    new LanguageRule(
-                        @"\b(module)\s+(interface\s+)?((?:[a-z]\w*/)*[a-z]\w*)",
-                        new Dictionary<int, string>
-                            {
-                                { 1, ScopeName.Keyword },
-                                { 2, ScopeName.Keyword },
-                                { 3, ScopeName.NameSpace },
-                            }),
+            // module and imports
+            new(
+                @"\b(module)\s+(interface\s+)?((?:[a-z]\w*/)*[a-z]\w*)",
+                new Dictionary<int, string>
+                {
+                    { 1, ScopeName.Keyword },
+                    { 2, ScopeName.Keyword },
+                    { 3, ScopeName.NameSpace },
+                }),
 
-                    new LanguageRule(
-                        @"\b(import)\s+((?:[a-z]\w*/)*[a-z]\w*)\s*(?:(=)\s*(qualified\s+)?((?:[a-z]\w*/)*[a-z]\w*))?",
-                        new Dictionary<int, string>
-                            {
-                                { 1, ScopeName.Keyword },
-                                { 2, ScopeName.NameSpace },
-                                { 3, ScopeName.Keyword },
-                                { 4, ScopeName.Keyword },
-                                { 5, ScopeName.NameSpace },
-                            }),
+            new(
+                @"\b(import)\s+((?:[a-z]\w*/)*[a-z]\w*)\s*(?:(=)\s*(qualified\s+)?((?:[a-z]\w*/)*[a-z]\w*))?",
+                new Dictionary<int, string>
+                {
+                    { 1, ScopeName.Keyword },
+                    { 2, ScopeName.NameSpace },
+                    { 3, ScopeName.Keyword },
+                    { 4, ScopeName.Keyword },
+                    { 5, ScopeName.NameSpace },
+                }),
 
-                    // keywords
-                    new LanguageRule(
-                        @"\b(" + plainKeywords + "|" + typeKeywords + @")\b",
-                        new Dictionary<int, string>
-                            {
-                                { 1, ScopeName.Keyword }
-                            }),
-                    new LanguageRule(
-                        @"\b(" + controlKeywords + @")\b",
-                        new Dictionary<int, string>
-                            {
-                                { 1, ScopeName.ControlKeyword }
-                            }),
-                    new LanguageRule(
-                        @"\b(" + pseudoKeywords + @")\b",
-                        new Dictionary<int, string>
-                            {
-                                { 1, ScopeName.PseudoKeyword }
-                            }),
+            // keywords
+            new(
+                @"\b(" + plainKeywords + "|" + typeKeywords + @")\b",
+                new Dictionary<int, string>
+                {
+                    { 1, ScopeName.Keyword },
+                }),
+            new(
+                @"\b(" + controlKeywords + @")\b",
+                new Dictionary<int, string>
+                {
+                    { 1, ScopeName.ControlKeyword },
+                }),
+            new(
+                @"\b(" + pseudoKeywords + @")\b",
+                new Dictionary<int, string>
+                {
+                    { 1, ScopeName.PseudoKeyword },
+                }),
 
-                    // Names
-                    new LanguageRule(
-                        @"([a-z]\w*/)*([a-z]\w*|\(" + symbols + @"\))",
-                        new Dictionary<int, string>
-                            {
-                                { 1, ScopeName.NameSpace }
-                            }),
-                    new LanguageRule(
-                        @"([a-z]\w*/)*([A-Z]\w*)",
-                        new Dictionary<int, string>
-                            {
-                                { 1, ScopeName.NameSpace },
-                                { 2, ScopeName.Constructor }
-                            }),
+            // Names
+            new(
+                @"([a-z]\w*/)*([a-z]\w*|\(" + symbols + @"\))",
+                new Dictionary<int, string>
+                {
+                    { 1, ScopeName.NameSpace },
+                }),
+            new(
+                @"([a-z]\w*/)*([A-Z]\w*)",
+                new Dictionary<int, string>
+                {
+                    { 1, ScopeName.NameSpace },
+                    { 2, ScopeName.Constructor },
+                }),
 
-                    // Operators and punctuation
-                    new LanguageRule(
-                        symbols,
-                        new Dictionary<int, string>
-                            {
-                                { 0, ScopeName.Operator }
-                            }),
-                    new LanguageRule(
-                        @"[{}\(\)\[\];,]",
-                        new Dictionary<int, string>
-                            {
-                                { 0, ScopeName.Delimiter }
-                            }),
+            // Operators and punctuation
+            new(
+                symbols,
+                new Dictionary<int, string>
+                {
+                    { 0, ScopeName.Operator },
+                }),
+            new(
+                @"[{}\(\)\[\];,]",
+                new Dictionary<int, string>
+                {
+                    { 0, ScopeName.Delimiter },
+                }),
 
-                    // Literals
-                    new LanguageRule(
-                        @"0[xX][\da-fA-F]+|\d+(\.\d+([eE][\-+]?\d+)?)?",
-                        new Dictionary<int, string>
-                            {
-                                { 0, ScopeName.Number }
-                            }),
+            // Literals
+            new(
+                @"0[xX][\da-fA-F]+|\d+(\.\d+([eE][\-+]?\d+)?)?",
+                new Dictionary<int, string>
+                {
+                    { 0, ScopeName.Number },
+                }),
 
-                    new LanguageRule(
-                        @"(?s)'(?:[^\t\n\\']+|(" + escape + @")|\\)*'",
-                        new Dictionary<int, string>
-                            {
-                                { 0, ScopeName.String },
-                                { 1, ScopeName.StringEscape },
-                            }),
-                    new LanguageRule(
-                        @"(?s)@""(?:("""")|[^""]+)*""(?!"")",
-                        new Dictionary<int, string>
-                            {
-                                { 0, ScopeName.StringCSharpVerbatim },
-                                { 1, ScopeName.StringEscape }
-                            }),
-                    new LanguageRule(
-                                @"(?s)""(?:[^\t\n\\""]+|(" + escape + @")|\\)*""",
-                                new Dictionary<int, string>
-                                    {
-                                        { 0, ScopeName.String },
-                                        { 1, ScopeName.StringEscape }
-                                    }),
-                            new LanguageRule(
-                                @"^\s*(\#error|\#line|\#pragma|\#warning|\#!/usr/bin/env\s+koka|\#).*?$",
-                                new Dictionary<int, string>
-                                    {
-                                        { 1, ScopeName.PreprocessorKeyword }
-                                    }),
-                 };
-            }
-        }
+            new(
+                @"(?s)'(?:[^\t\n\\']+|(" + escape + @")|\\)*'",
+                new Dictionary<int, string>
+                {
+                    { 0, ScopeName.String },
+                    { 1, ScopeName.StringEscape },
+                }),
+            new(
+                @"(?s)@""(?:("""")|[^""]+)*""(?!"")",
+                new Dictionary<int, string>
+                {
+                    { 0, ScopeName.StringCSharpVerbatim },
+                    { 1, ScopeName.StringEscape },
+                }),
+            new(
+                @"(?s)""(?:[^\t\n\\""]+|(" + escape + @")|\\)*""",
+                new Dictionary<int, string>
+                {
+                    { 0, ScopeName.String },
+                    { 1, ScopeName.StringEscape },
+                }),
+            new(
+                @"^\s*(\#error|\#line|\#pragma|\#warning|\#!/usr/bin/env\s+koka|\#).*?$",
+                new Dictionary<int, string>
+                {
+                    { 1, ScopeName.PreprocessorKeyword },
+                }),
+        };
 
         public bool HasAlias(string lang)
         {
@@ -239,8 +224,6 @@ namespace MDS.ColorCode.Compilation.Languages
         }
 
         public override string ToString()
-        {
-            return Name;
-        }
+            => Name;
     }
 }

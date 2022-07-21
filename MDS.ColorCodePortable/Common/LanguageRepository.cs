@@ -10,13 +10,10 @@ namespace MDS.ColorCode.Common
         public LanguageRepository(Dictionary<string, ILanguage> loadedLanguages)
         {
             this.loadedLanguages = loadedLanguages;
-            loadLock = new ReaderWriterLockSlim();
+            loadLock = new();
         }
 
-        public IEnumerable<ILanguage> All
-        {
-            get { return loadedLanguages.Values; }
-        }
+        public IEnumerable<ILanguage> All => loadedLanguages.Values;
 
         public ILanguage FindById(string languageId)
         {

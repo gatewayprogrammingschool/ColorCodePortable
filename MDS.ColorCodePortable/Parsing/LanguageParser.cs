@@ -150,7 +150,7 @@ namespace MDS.ColorCode.Parsing
                 AppendCapturedStylesForNestedLanguage(regexCapture, regexCapture.Index - currentIndex, nestedGrammarId, capturedStyles);
             }
             else
-                capturedStyles.Add(new Scope(styleName, regexCapture.Index - currentIndex, regexCapture.Length));
+                capturedStyles.Add(new(styleName, regexCapture.Index - currentIndex, regexCapture.Length));
         }
 
         private void AppendCapturedStylesForNestedLanguage(Capture regexCapture,

@@ -15,8 +15,6 @@ namespace MDS.ColorCode
         /// <param name="item">The element from which to extract the key.</param>
         /// <returns>The key for the specified element.</returns>
         protected override string GetKeyForItem(Style item)
-        {
-            return item.ScopeName;
-        }
+            => item.ScopeName;
     }
 }

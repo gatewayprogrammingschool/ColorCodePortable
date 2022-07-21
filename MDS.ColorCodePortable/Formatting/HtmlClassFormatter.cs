@@ -60,20 +60,20 @@ namespace MDS.ColorCode.Formatting
 
         private static void GetStyleInsertionsForCapturedStyle(Scope scope, ICollection<TextInsertion> styleInsertions)
         {
-            styleInsertions.Add(new TextInsertion
+            styleInsertions.Add(new()
             {
                 Index = scope.Index,
-                Scope = scope
+                Scope = scope,
             });
 
 
             foreach (Scope childScope in scope.Children)
                 GetStyleInsertionsForCapturedStyle(childScope, styleInsertions);
 
-            styleInsertions.Add(new TextInsertion
+            styleInsertions.Add(new()
             {
                 Index = scope.Index + scope.Length,
-                Text = "</span>"
+                Text = "</span>",
             });
         }
 
