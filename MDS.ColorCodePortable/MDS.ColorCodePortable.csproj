@@ -21,7 +21,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageIcon>93015012.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageLicenseExpression>MP-PL</PackageLicenseExpression>
+    <PackageLicenseExpression>MS-PL</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
