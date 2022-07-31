@@ -16,6 +16,10 @@
     <PackageIconUrl>https://cdn.rawgit.com/MarkdownServer/ColorCodePortable/c7e4e62aeafa6fcb124bc4d883c95b02a3ee1792/ColorCode/Assets/icon.png</PackageIconUrl>
     <IsPackable>True</IsPackable>
     <RootNamespace>MDS.ColorCode</RootNamespace>
+    <Title>MDS.ColorCodePortable</Title>
+    <Authors>@sharpninja &lt;ninja@thesharp.ninja&gt;</Authors>
+    <RepositoryUrl>https://github.com/MarkdownServer/ColorCodePortable</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
