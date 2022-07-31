@@ -11,7 +11,6 @@
     <IncludeSymbols>True</IncludeSymbols>
     <PackageId>MDS.ColorCodePortable</PackageId>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <PackageLicenseUrl>https://opensource.org/licenses/MS-PL</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/MarkdownServer/ColorCodePortable</PackageProjectUrl>
     <PackageIconUrl>https://cdn.rawgit.com/MarkdownServer/ColorCodePortable/c7e4e62aeafa6fcb124bc4d883c95b02a3ee1792/ColorCode/Assets/icon.png</PackageIconUrl>
     <IsPackable>True</IsPackable>
@@ -20,12 +19,26 @@
     <Authors>@sharpninja &lt;ninja@thesharp.ninja&gt;</Authors>
     <RepositoryUrl>https://github.com/MarkdownServer/ColorCodePortable</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <PackageIcon>93015012.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MP-PL</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="Properties\**" />
     <EmbeddedResource Remove="Properties\**" />
     <None Remove="Properties\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\93015012.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
