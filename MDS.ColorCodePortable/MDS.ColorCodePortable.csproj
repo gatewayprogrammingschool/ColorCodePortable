@@ -9,7 +9,7 @@
     <Nullable>disable</Nullable>
     <IncludeSource>True</IncludeSource>
     <IncludeSymbols>True</IncludeSymbols>
-    <MarkdownServer>
+    <PackageId>
       MarkdownServer.ColorCodePortable</PackageId>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <PackageProjectUrl>https://github.com/MarkdownServer/ColorCodePortable</PackageProjectUrl>
