@@ -1,15 +1,17 @@
 // Copyright (c) Microsoft Corporation.  All rights reserved.
 
-namespace MDS.ColorCode
+namespace MDS.ColorCode;
+
+/// <summary>
+/// Defines the contract for a style sheet.
+/// </summary>
+public interface IStyleSheet
 {
     /// <summary>
-    /// Defines the contract for a style sheet.
+    /// Gets the dictionary of styles for the style sheet.
     /// </summary>
-    public interface IStyleSheet
+    StyleDictionary Styles
     {
-        /// <summary>
-        /// Gets the dictionary of styles for the style sheet.
-        /// </summary>
-        StyleDictionary Styles { get; }
+        get;
     }
 }

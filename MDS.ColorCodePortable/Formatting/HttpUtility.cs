@@ -1,8 +1,7 @@
-﻿namespace MDS.ColorCode.Formatting
+﻿namespace MDS.ColorCode.Formatting;
+
+public static class HttpUtility
 {
-    public static class HttpUtility
-    {
-        public static string HtmlEncode(string value)
-            => System.Net.WebUtility.HtmlEncode(value);
-    }
+    public static string HtmlEncode(string value)
+        => System.Net.WebUtility.HtmlEncode(value);
 }

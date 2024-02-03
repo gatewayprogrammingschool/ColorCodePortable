@@ -4,176 +4,175 @@ using MDS.ColorCode.Common;
 using MDS.ColorCode.Parsing;
 using MDS.ColorCode.Styling;
 
-namespace MDS.ColorCode.Formatting
+namespace MDS.ColorCode.Formatting;
+
+public class HtmlFormatter : IFormatter
 {
-    public class HtmlFormatter : IFormatter
+    public void Write(string parsedSourceCode,
+                      IList<Scope> scopes,
+                      IStyleSheet styleSheet,
+                      TextWriter textWriter)
     {
-        public void Write(string parsedSourceCode,
-                          IList<Scope> scopes,
-                          IStyleSheet styleSheet,
-                          TextWriter textWriter)
+        var styleInsertions = new List<TextInsertion>();
+
+        foreach (Scope scope in scopes)
+            GetStyleInsertionsForCapturedStyle(scope, styleInsertions);
+
+        styleInsertions.SortStable((x, y) => x.Index.CompareTo(y.Index));
+
+        int offset = 0;
+
+        foreach (TextInsertion styleInsertion in styleInsertions)
         {
-            var styleInsertions = new List<TextInsertion>();
-
-            foreach (Scope scope in scopes)
-                GetStyleInsertionsForCapturedStyle(scope, styleInsertions);
-
-            styleInsertions.SortStable((x, y) => x.Index.CompareTo(y.Index));
-
-            int offset = 0;
-
-            foreach (TextInsertion styleInsertion in styleInsertions)
-            {
-                textWriter.Write(HttpUtility.HtmlEncode(parsedSourceCode.Substring(offset, styleInsertion.Index - offset)));
-                if (string.IsNullOrEmpty(styleInsertion.Text))
-                    BuildSpanForCapturedStyle(styleInsertion.Scope, styleSheet, textWriter);
-                else
-                    textWriter.Write(styleInsertion.Text);
-                offset = styleInsertion.Index;
-            }
-
-            textWriter.Write(HttpUtility.HtmlEncode(parsedSourceCode.Substring(offset)));
+            textWriter.Write(HttpUtility.HtmlEncode(parsedSourceCode.Substring(offset, styleInsertion.Index - offset)));
+            if (string.IsNullOrEmpty(styleInsertion.Text))
+                BuildSpanForCapturedStyle(styleInsertion.Scope, styleSheet, textWriter);
+            else
+                textWriter.Write(styleInsertion.Text);
+            offset = styleInsertion.Index;
         }
 
-        public void WriteFooter(IStyleSheet styleSheet,
-                                ILanguage language,
-                                TextWriter textWriter)
-        {
-            Guard.ArgNotNull(styleSheet, "styleSheet");
-            Guard.ArgNotNull(textWriter, "textWriter");
+        textWriter.Write(HttpUtility.HtmlEncode(parsedSourceCode.Substring(offset)));
+    }
 
-            textWriter.WriteLine();
-            WriteHeaderPreEnd(textWriter);
-            WriteHeaderDivEnd(textWriter);
+    public void WriteFooter(IStyleSheet styleSheet,
+                            ILanguage language,
+                            TextWriter textWriter)
+    {
+        Guard.ArgNotNull(styleSheet, "styleSheet");
+        Guard.ArgNotNull(textWriter, "textWriter");
+
+        textWriter.WriteLine();
+        WriteHeaderPreEnd(textWriter);
+        WriteHeaderDivEnd(textWriter);
+    }
+
+    public void WriteHeader(IStyleSheet styleSheet,
+                            ILanguage language,
+                            TextWriter textWriter)
+    {
+        Guard.ArgNotNull(styleSheet, "styleSheet");
+        Guard.ArgNotNull(textWriter, "textWriter");
+
+        WriteHeaderDivStart(styleSheet, textWriter);
+        WriteHeaderPreStart(textWriter);
+        textWriter.WriteLine();
+    }
+
+    private static void GetStyleInsertionsForCapturedStyle(Scope scope, ICollection<TextInsertion> styleInsertions)
+    {
+        styleInsertions.Add(new()
+        {
+            Index = scope.Index,
+            Scope = scope,
+        });
+
+
+        foreach (Scope childScope in scope.Children)
+            GetStyleInsertionsForCapturedStyle(childScope, styleInsertions);
+
+        styleInsertions.Add(new()
+        {
+            Index = scope.Index + scope.Length,
+            Text = "</span>",
+        });
+    }
+
+    private static void BuildSpanForCapturedStyle(Scope scope,
+                                                    IStyleSheet styleSheet,
+                                                    TextWriter writer)
+    {
+        Color foreground = Color.Empty;
+        Color background = Color.Empty;
+        bool italic = false;
+        bool bold = false;
+
+        if (styleSheet.Styles.Contains(scope.Name))
+        {
+            Style style = styleSheet.Styles[scope.Name];
+
+            foreground = style.Foreground;
+            background = style.Background;
+            italic = style.Italic;
+            bold = style.Bold;
         }
 
-        public void WriteHeader(IStyleSheet styleSheet,
-                                ILanguage language,
-                                TextWriter textWriter)
-        {
-            Guard.ArgNotNull(styleSheet, "styleSheet");
-            Guard.ArgNotNull(textWriter, "textWriter");
+        WriteElementStart(writer, "span", foreground, background, italic, bold);
+    }
 
-            WriteHeaderDivStart(styleSheet, textWriter);
-            WriteHeaderPreStart(textWriter);
-            textWriter.WriteLine();
-        }
+    private static void WriteHeaderDivEnd(TextWriter writer)
+    {
+        WriteElementEnd("div", writer);
+    }
 
-        private static void GetStyleInsertionsForCapturedStyle(Scope scope, ICollection<TextInsertion> styleInsertions)
-        {
-            styleInsertions.Add(new()
-            {
-                Index = scope.Index,
-                Scope = scope,
-            });
+    private static void WriteElementEnd(string elementName,
+                                        TextWriter writer)
+    {
+        writer.Write("</{0}>", elementName);
+    }
 
+    private static void WriteHeaderPreEnd(TextWriter writer)
+    {
+        WriteElementEnd("pre", writer);
+    }
 
-            foreach (Scope childScope in scope.Children)
-                GetStyleInsertionsForCapturedStyle(childScope, styleInsertions);
+    private static void WriteHeaderPreStart(TextWriter writer)
+    {
+        WriteElementStart(writer, "pre");
+    }
 
-            styleInsertions.Add(new()
-            {
-                Index = scope.Index + scope.Length,
-                Text = "</span>",
-            });
-        }
-
-        private static void BuildSpanForCapturedStyle(Scope scope,
-                                                        IStyleSheet styleSheet,
-                                                        TextWriter writer)
-        {
-            Color foreground = Color.Empty;
-            Color background = Color.Empty;
-            bool italic = false;
-            bool bold = false;
-
-            if (styleSheet.Styles.Contains(scope.Name))
-            {
-                Style style = styleSheet.Styles[scope.Name];
-
-                foreground = style.Foreground;
-                background = style.Background;
-                italic = style.Italic;
-                bold = style.Bold;
-            }
-
-            WriteElementStart(writer, "span", foreground, background, italic, bold);
-        }
-
-        private static void WriteHeaderDivEnd(TextWriter writer)
-        {
-            WriteElementEnd("div", writer);
-        }
-
-        private static void WriteElementEnd(string elementName,
+    private static void WriteHeaderDivStart(IStyleSheet styleSheet,
                                             TextWriter writer)
+    {
+        Color foreground = Color.Empty;
+        Color background = Color.Empty;
+
+        if (styleSheet.Styles.Contains(ScopeName.PlainText))
         {
-            writer.Write("</{0}>", elementName);
+            Style plainTextStyle = styleSheet.Styles[ScopeName.PlainText];
+
+            foreground = plainTextStyle.Foreground;
+            background = plainTextStyle.Background;
         }
 
-        private static void WriteHeaderPreEnd(TextWriter writer)
+        WriteElementStart(writer, "div", foreground, background);
+    }
+
+    private static void WriteElementStart(TextWriter writer,
+                                          string elementName)
+    {
+        WriteElementStart(writer, elementName, Color.Empty, Color.Empty);
+    }
+
+    private static void WriteElementStart(TextWriter writer,
+                                          string elementName,
+                                          Color foreground,
+                                          Color background,
+                                          bool italic = false,
+                                          bool bold = false
+                                          )
+    {
+        writer.Write("<{0}", elementName);
+
+        if (foreground != Color.Empty || background != Color.Empty || italic || bold)
         {
-            WriteElementEnd("pre", writer);
+            writer.Write(" style=\"");
+
+            if (foreground != Color.Empty)
+                writer.Write("color:{0};", foreground.ToHtmlColor());
+
+            if (background != Color.Empty)
+                writer.Write("background-color:{0};", background.ToHtmlColor());
+
+            if (italic)
+                writer.Write("font-style: italic;");
+
+            if (bold)
+                writer.Write("font-weight: bold;");
+
+            writer.Write("\"");
         }
 
-        private static void WriteHeaderPreStart(TextWriter writer)
-        {
-            WriteElementStart(writer, "pre");
-        }
-
-        private static void WriteHeaderDivStart(IStyleSheet styleSheet,
-                                                TextWriter writer)
-        {
-            Color foreground = Color.Empty;
-            Color background = Color.Empty;
-
-            if (styleSheet.Styles.Contains(ScopeName.PlainText))
-            {
-                Style plainTextStyle = styleSheet.Styles[ScopeName.PlainText];
-
-                foreground = plainTextStyle.Foreground;
-                background = plainTextStyle.Background;
-            }
-
-            WriteElementStart(writer, "div", foreground, background);
-        }
-
-        private static void WriteElementStart(TextWriter writer,
-                                              string elementName)
-        {
-            WriteElementStart(writer, elementName, Color.Empty, Color.Empty);
-        }
-
-        private static void WriteElementStart(TextWriter writer,
-                                              string elementName,
-                                              Color foreground,
-                                              Color background,
-                                              bool italic = false,
-                                              bool bold = false
-                                              )
-        {
-            writer.Write("<{0}", elementName);
-
-            if (foreground != Color.Empty || background != Color.Empty || italic || bold)
-            {
-                writer.Write(" style=\"");
-
-                if (foreground != Color.Empty)
-                    writer.Write("color:{0};", foreground.ToHtmlColor());
-
-                if (background != Color.Empty)
-                    writer.Write("background-color:{0};", background.ToHtmlColor());
-
-                if (italic)
-                    writer.Write("font-style: italic;");
-
-                if (bold)
-                    writer.Write("font-weight: bold;");
-
-                writer.Write("\"");
-            }
-
-            writer.Write(">");
-        }
+        writer.Write(">");
     }
 }

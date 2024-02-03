@@ -2,19 +2,18 @@
 
 using MDS.ColorCode.Styling.StyleSheets;
 
-namespace MDS.ColorCode
+namespace MDS.ColorCode;
+
+/// <summary>
+/// Provides easy access to ColorCode's built-in style sheets.
+/// </summary>
+public static class StyleSheets
 {
     /// <summary>
-    /// Provides easy access to ColorCode's built-in style sheets.
+    /// Gets the default style sheet.
     /// </summary>
-    public static class StyleSheets
-    {
-        /// <summary>
-        /// Gets the default style sheet.
-        /// </summary>
-        /// <remarks>
-        /// The default style sheet mimics the default colorization scheme used by Visual Studio 2008 to the extent possible.
-        /// </remarks>
-        public static IStyleSheet Default => new DefaultStyleSheet();
-    }
+    /// <remarks>
+    /// The default style sheet mimics the default colorization scheme used by Visual Studio 2008 to the extent possible.
+    /// </remarks>
+    public static IStyleSheet Default => new DefaultStyleSheet();
 }

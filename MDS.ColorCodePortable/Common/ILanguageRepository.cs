@@ -1,11 +1,13 @@
 // Copyright (c) Microsoft Corporation.  All rights reserved.
 
-namespace MDS.ColorCode.Common
+namespace MDS.ColorCode.Common;
+
+public interface ILanguageRepository
 {
-    public interface ILanguageRepository
+    IEnumerable<ILanguage> All
     {
-        IEnumerable<ILanguage> All { get; }
-        ILanguage FindById(string languageId);
-        void Load(ILanguage language);
+        get;
     }
+    ILanguage FindById(string languageId);
+    void Load(ILanguage language);
 }

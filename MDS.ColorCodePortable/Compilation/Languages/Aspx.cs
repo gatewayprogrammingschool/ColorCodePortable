@@ -2,74 +2,74 @@
 
 using MDS.ColorCode.Common;
 
-namespace MDS.ColorCode.Compilation.Languages
+namespace MDS.ColorCode.Compilation.Languages;
+
+public class Aspx : ILanguage
 {
-    public class Aspx : ILanguage
+    public string Id => LanguageId.Aspx;
+
+    public string Name => "ASPX";
+
+    public string CssClassName => "aspx";
+
+    public string FirstLinePattern
     {
-        public string Id => LanguageId.Aspx;
-
-        public string Name => "ASPX";
-
-        public string CssClassName => "aspx";
-
-        public string FirstLinePattern
+        get
         {
-            get
-            {
 #pragma warning disable CS8603 // Possible null reference return.
-                return null;
+            return null;
 #pragma warning restore CS8603 // Possible null reference return.
-            }
         }
+    }
 
-        public IList<LanguageRule> Rules => new List<LanguageRule>
-        {
-            new(
-                @"(?s)(<%)(--.*?--)(%>)",
-                new Dictionary<int, string>
-                {
-                    { 1, ScopeName.HtmlServerSideScript },
-                    { 2, ScopeName.HtmlComment },
-                    { 3, ScopeName.HtmlServerSideScript },
-                }),
-            new(
-                @"(?s)<!--.*?-->",
-                new Dictionary<int, string>
-                {
-                    { 0, ScopeName.HtmlComment },
-                }),
-            new(
-                @"(?i)(<%)(@)(?:\s+([a-z0-9]+))*(?:\s+([a-z0-9]+)(=)(""[^\n]*?""))*\s*?(%>)",
-                new Dictionary<int, string>
-                {
-                    { 1, ScopeName.HtmlServerSideScript },
-                    { 2, ScopeName.HtmlTagDelimiter },
-                    { 3, ScopeName.HtmlElementName },
-                    { 4, ScopeName.HtmlAttributeName },
-                    { 5, ScopeName.HtmlOperator },
-                    { 6, ScopeName.HtmlAttributeValue },
-                    { 7, ScopeName.HtmlServerSideScript },
-                }),
-            new(
-                @"(?s)(?:(<%=|<%)(?!=|@|--))(?:.*?)(%>)",
-                new Dictionary<int, string>
-                {
-                    { 1, ScopeName.HtmlServerSideScript },
-                    { 2, ScopeName.HtmlServerSideScript },
-                }),
-            new(
-                @"(?is)(<!)(DOCTYPE)(?:\s+([a-z0-9]+))*(?:\s+(""[^""]*?""))*(>)",
-                new Dictionary<int, string>
-                {
-                    { 1, ScopeName.HtmlTagDelimiter },
-                    { 2, ScopeName.HtmlElementName },
-                    { 3, ScopeName.HtmlAttributeName },
-                    { 4, ScopeName.HtmlAttributeValue },
-                    { 5, ScopeName.HtmlTagDelimiter },
-                }),
-            new(RuleFormats.JavaScript, RuleCaptures.JavaScript),
-            new(
-                @"(?xi)(</?)
+    public IList<LanguageRule> Rules => new List<LanguageRule>
+    {
+        new(
+            @"(?s)(<%)(--.*?--)(%>)",
+            new Dictionary<int, string>
+            {
+                { 1, ScopeName.HtmlServerSideScript },
+                { 2, ScopeName.HtmlComment },
+                { 3, ScopeName.HtmlServerSideScript },
+            }),
+        new(
+            @"(?s)<!--.*?-->",
+            new Dictionary<int, string>
+            {
+                { 0, ScopeName.HtmlComment },
+            }),
+        new(
+            @"(?i)(<%)(@)(?:\s+([a-z0-9]+))*(?:\s+([a-z0-9]+)(=)(""[^\n]*?""))*\s*?(%>)",
+            new Dictionary<int, string>
+            {
+                { 1, ScopeName.HtmlServerSideScript },
+                { 2, ScopeName.HtmlTagDelimiter },
+                { 3, ScopeName.HtmlElementName },
+                { 4, ScopeName.HtmlAttributeName },
+                { 5, ScopeName.HtmlOperator },
+                { 6, ScopeName.HtmlAttributeValue },
+                { 7, ScopeName.HtmlServerSideScript },
+            }),
+        new(
+            @"(?s)(?:(<%=|<%)(?!=|@|--))(?:.*?)(%>)",
+            new Dictionary<int, string>
+            {
+                { 1, ScopeName.HtmlServerSideScript },
+                { 2, ScopeName.HtmlServerSideScript },
+            }),
+        new(
+            @"(?is)(<!)(DOCTYPE)(?:\s+([a-z0-9]+))*(?:\s+(""[^""]*?""))*(>)",
+            new Dictionary<int, string>
+            {
+                { 1, ScopeName.HtmlTagDelimiter },
+                { 2, ScopeName.HtmlElementName },
+                { 3, ScopeName.HtmlAttributeName },
+                { 4, ScopeName.HtmlAttributeValue },
+                { 5, ScopeName.HtmlTagDelimiter },
+            }),
+        new(RuleFormats.JavaScript, RuleCaptures.JavaScript),
+        new(
+            @"(?xi)(</?)
                                          (?: ([a-z][a-z0-9-]*)(:) )*
                                          ([a-z][a-z0-9-_]*)
                                          (?:
@@ -79,36 +79,35 @@ namespace MDS.ColorCode.Compilation.Languages
                                            |[\s\n]+([a-z0-9-_]+) )*
                                          [\s\n]*
                                          (/?>)",
-                new Dictionary<int, string>
-                {
-                    { 1, ScopeName.HtmlTagDelimiter },
-                    { 2, ScopeName.HtmlElementName },
-                    { 3, ScopeName.HtmlTagDelimiter },
-                    { 4, ScopeName.HtmlElementName },
-                    { 5, ScopeName.HtmlAttributeName },
-                    { 6, ScopeName.HtmlOperator },
-                    { 7, ScopeName.HtmlAttributeValue },
-                    { 8, ScopeName.HtmlAttributeName },
-                    { 9, ScopeName.HtmlOperator },
-                    { 10, ScopeName.HtmlAttributeValue },
-                    { 11, ScopeName.HtmlAttributeName },
-                    { 12, ScopeName.HtmlOperator },
-                    { 13, ScopeName.HtmlAttributeValue },
-                    { 14, ScopeName.HtmlAttributeName },
-                    { 15, ScopeName.HtmlTagDelimiter },
-                }),
-            new(
-                @"(?i)&[a-z0-9]+?;",
-                new Dictionary<int, string>
-                {
-                    { 0, ScopeName.HtmlEntity },
-                }),
-        };
+            new Dictionary<int, string>
+            {
+                { 1, ScopeName.HtmlTagDelimiter },
+                { 2, ScopeName.HtmlElementName },
+                { 3, ScopeName.HtmlTagDelimiter },
+                { 4, ScopeName.HtmlElementName },
+                { 5, ScopeName.HtmlAttributeName },
+                { 6, ScopeName.HtmlOperator },
+                { 7, ScopeName.HtmlAttributeValue },
+                { 8, ScopeName.HtmlAttributeName },
+                { 9, ScopeName.HtmlOperator },
+                { 10, ScopeName.HtmlAttributeValue },
+                { 11, ScopeName.HtmlAttributeName },
+                { 12, ScopeName.HtmlOperator },
+                { 13, ScopeName.HtmlAttributeValue },
+                { 14, ScopeName.HtmlAttributeName },
+                { 15, ScopeName.HtmlTagDelimiter },
+            }),
+        new(
+            @"(?i)&[a-z0-9]+?;",
+            new Dictionary<int, string>
+            {
+                { 0, ScopeName.HtmlEntity },
+            }),
+    };
 
-        public bool HasAlias(string lang)
-            => false;
+    public bool HasAlias(string lang)
+        => false;
 
-        public override string ToString()
-            => Name;
-    }
+    public override string ToString()
+        => Name;
 }

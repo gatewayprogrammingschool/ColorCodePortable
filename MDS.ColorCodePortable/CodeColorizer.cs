@@ -6,87 +6,86 @@ using MDS.ColorCode.Common;
 using MDS.ColorCode.Compilation;
 using MDS.ColorCode.Parsing;
 
-namespace MDS.ColorCode
+namespace MDS.ColorCode;
+
+/// <summary>
+/// Colorizes source code.
+/// </summary>
+public class CodeColorizer : ICodeColorizer
 {
+    private readonly ILanguageParser languageParser;
+
     /// <summary>
-    /// Colorizes source code.
+    /// Initializes a new instance of the <see cref="CodeColorizer"/> class.
     /// </summary>
-    public class CodeColorizer : ICodeColorizer
+    public CodeColorizer()
+        => languageParser = new LanguageParser(new LanguageCompiler(Languages.CompiledLanguages), Languages.LanguageRepository);
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="CodeColorizer"/> class.
+    /// </summary>
+    /// <param name="languageParser">The language parser that the <see cref="CodeColorizer"/> instance will use for its lifetime.</param>
+    public CodeColorizer(ILanguageParser languageParser)
     {
-        private readonly ILanguageParser languageParser;
+        Guard.ArgNotNull(languageParser, "languageParser");
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CodeColorizer"/> class.
-        /// </summary>
-        public CodeColorizer()
-            => languageParser = new LanguageParser(new LanguageCompiler(Languages.CompiledLanguages), Languages.LanguageRepository);
+        this.languageParser = languageParser;
+    }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CodeColorizer"/> class.
-        /// </summary>
-        /// <param name="languageParser">The language parser that the <see cref="CodeColorizer"/> instance will use for its lifetime.</param>
-        public CodeColorizer(ILanguageParser languageParser)
+    /// <summary>
+    /// Colorizes source code using the specified language, the default formatter, and the default style sheet.
+    /// </summary>
+    /// <param name="sourceCode">The source code to colorize.</param>
+    /// <param name="language">The language to use to colorize the source code.</param>
+    /// <returns>The colorized source code.</returns>
+    public string Colorize(string sourceCode, ILanguage language)
+    {
+        var buffer = new StringBuilder(sourceCode.Length * 2);
+
+        using (TextWriter writer = new StringWriter(buffer))
         {
-            Guard.ArgNotNull(languageParser, "languageParser");
+            Colorize(sourceCode, language, writer);
 
-            this.languageParser = languageParser;
+            writer.Flush();
         }
 
-        /// <summary>
-        /// Colorizes source code using the specified language, the default formatter, and the default style sheet.
-        /// </summary>
-        /// <param name="sourceCode">The source code to colorize.</param>
-        /// <param name="language">The language to use to colorize the source code.</param>
-        /// <returns>The colorized source code.</returns>
-        public string Colorize(string sourceCode, ILanguage language)
-        {
-            var buffer = new StringBuilder(sourceCode.Length * 2);
+        return buffer.ToString();
+    }
 
-            using (TextWriter writer = new StringWriter(buffer))
-            {
-                Colorize(sourceCode, language, writer);
+    /// <summary>
+    /// Colorizes source code using the specified language, the default formatter, and the default style sheet.
+    /// </summary>
+    /// <param name="sourceCode">The source code to colorize.</param>
+    /// <param name="language">The language to use to colorize the source code.</param>
+    /// <param name="textWriter">The text writer to which the colorized source code will be written.</param>
+    public void Colorize(string sourceCode, ILanguage language, TextWriter textWriter)
+    {
+        Colorize(sourceCode, language, Formatters.Default, StyleSheets.Default, textWriter);
+    }
 
-                writer.Flush();
-            }
+    /// <summary>
+    /// Colorizes source code using the specified language, formatter, and style sheet.
+    /// </summary>
+    /// <param name="sourceCode">The source code to colorize.</param>
+    /// <param name="language">The language to use to colorize the source code.</param>
+    /// <param name="formatter">The formatter to use to colorize the source code.</param>
+    /// <param name="styleSheet">The style sheet to use to colorize the source code.</param>
+    /// <param name="textWriter">The text writer to which the colorized source code will be written.</param>
+    public void Colorize(string sourceCode,
+                         ILanguage language,
+                         IFormatter formatter,
+                         IStyleSheet styleSheet,
+                         TextWriter textWriter)
+    {
+        Guard.ArgNotNull(language, "language");
+        Guard.ArgNotNull(formatter, "formatter");
+        Guard.ArgNotNull(styleSheet, "styleSheet");
+        Guard.ArgNotNull(textWriter, "textWriter");
 
-            return buffer.ToString();
-        }
+        formatter.WriteHeader(styleSheet, language, textWriter);
 
-        /// <summary>
-        /// Colorizes source code using the specified language, the default formatter, and the default style sheet.
-        /// </summary>
-        /// <param name="sourceCode">The source code to colorize.</param>
-        /// <param name="language">The language to use to colorize the source code.</param>
-        /// <param name="textWriter">The text writer to which the colorized source code will be written.</param>
-        public void Colorize(string sourceCode, ILanguage language, TextWriter textWriter)
-        {
-            Colorize(sourceCode, language, Formatters.Default, StyleSheets.Default, textWriter);
-        }
+        languageParser.Parse(sourceCode, language, (parsedSourceCode, captures) => formatter.Write(parsedSourceCode, captures, styleSheet, textWriter));
 
-        /// <summary>
-        /// Colorizes source code using the specified language, formatter, and style sheet.
-        /// </summary>
-        /// <param name="sourceCode">The source code to colorize.</param>
-        /// <param name="language">The language to use to colorize the source code.</param>
-        /// <param name="formatter">The formatter to use to colorize the source code.</param>
-        /// <param name="styleSheet">The style sheet to use to colorize the source code.</param>
-        /// <param name="textWriter">The text writer to which the colorized source code will be written.</param>
-        public void Colorize(string sourceCode,
-                             ILanguage language,
-                             IFormatter formatter,
-                             IStyleSheet styleSheet,
-                             TextWriter textWriter)
-        {
-            Guard.ArgNotNull(language, "language");
-            Guard.ArgNotNull(formatter, "formatter");
-            Guard.ArgNotNull(styleSheet, "styleSheet");
-            Guard.ArgNotNull(textWriter, "textWriter");
-
-            formatter.WriteHeader(styleSheet, language, textWriter);
-
-            languageParser.Parse(sourceCode, language, (parsedSourceCode, captures) => formatter.Write(parsedSourceCode, captures, styleSheet, textWriter));
-
-            formatter.WriteFooter(styleSheet, language, textWriter);
-        }
+        formatter.WriteFooter(styleSheet, language, textWriter);
     }
 }

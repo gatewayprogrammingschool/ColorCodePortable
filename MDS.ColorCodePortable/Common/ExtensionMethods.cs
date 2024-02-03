@@ -2,44 +2,43 @@
 
 using MDS.ColorCode.Styling;
 
-namespace MDS.ColorCode.Common
+namespace MDS.ColorCode.Common;
+
+public static class ExtensionMethods
 {
-    public static class ExtensionMethods
+    public static void SortStable<T>(this IList<T> list,
+                                     Comparison<T> comparison)
     {
-        public static void SortStable<T>(this IList<T> list,
-                                         Comparison<T> comparison)
+        Guard.ArgNotNull(list, "list");
+
+        int count = list.Count;
+
+        for (int j = 1; j < count; j++)
         {
-            Guard.ArgNotNull(list, "list");
+            T key = list[j];
 
-            int count = list.Count;
-
-            for (int j = 1; j < count; j++)
+            int i = j - 1;
+            for (; i >= 0 && comparison(list[i], key) > 0; i--)
             {
-                T key = list[j];
-
-                int i = j - 1;
-                for (; i >= 0 && comparison(list[i], key) > 0; i--)
-                {
-                    list[i + 1] = list[i];
-                }
-
-                list[i + 1] = key;
+                list[i + 1] = list[i];
             }
-        }
 
-        public static string ToHtmlColor(this Color color)
-        {
-            if (color == Color.Empty)
-                throw new ArgumentException("You may not create a hex string from an empty color.");
+            list[i + 1] = key;
+        }
+    }
+
+    public static string ToHtmlColor(this Color color)
+    {
+        if (color == Color.Empty)
+            throw new ArgumentException("You may not create a hex string from an empty color.");
 
 #pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-            if (color == null)
-                throw new ArgumentException("You may not create a hex string from a null color.");
+        if (color == null)
+            throw new ArgumentException("You may not create a hex string from a null color.");
 #pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
 
-            return string.IsNullOrWhiteSpace(color.Name) ? $"#{color.R:x2}{color.G:x2}{color.B:x2}".ToUpperInvariant() : color.Name;
-        }
-
-
+        return string.IsNullOrWhiteSpace(color.Name) ? $"#{color.R:x2}{color.G:x2}{color.B:x2}".ToUpperInvariant() : color.Name;
     }
+
+
 }

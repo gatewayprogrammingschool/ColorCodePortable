@@ -4,32 +4,43 @@ using System.Text.RegularExpressions;
 
 using MDS.ColorCode.Common;
 
-namespace MDS.ColorCode.Compilation
+namespace MDS.ColorCode.Compilation;
+
+public class CompiledLanguage
 {
-    public class CompiledLanguage
+    public CompiledLanguage(string id,
+                            string name,
+                            Regex regex,
+                            IList<string> captures)
     {
-        public CompiledLanguage(string id,
-                                string name,
-                                Regex regex,
-                                IList<string> captures)
-        {
-            Guard.ArgNotNullAndNotEmpty(id, "id");
-            Guard.ArgNotNullAndNotEmpty(name, "name");
-            Guard.ArgNotNull(regex, "regex");
-            Guard.ArgNotNullAndNotEmpty(captures, "captures");
+        Guard.ArgNotNullAndNotEmpty(id, "id");
+        Guard.ArgNotNullAndNotEmpty(name, "name");
+        Guard.ArgNotNull(regex, "regex");
+        Guard.ArgNotNullAndNotEmpty(captures, "captures");
 
-            Id = id;
-            Name = name;
-            Regex = regex;
-            Captures = captures;
-        }
-
-        public IList<string> Captures { get; set; }
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public Regex Regex { get; set; }
-
-        public override string ToString()
-            => Name;
+        Id = id;
+        Name = name;
+        Regex = regex;
+        Captures = captures;
     }
+
+    public IList<string> Captures
+    {
+        get; set;
+    }
+    public string Id
+    {
+        get; set;
+    }
+    public string Name
+    {
+        get; set;
+    }
+    public Regex Regex
+    {
+        get; set;
+    }
+
+    public override string ToString()
+        => Name;
 }
